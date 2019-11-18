@@ -26,3 +26,5 @@ spring:
 logging:
   level:
     com.cy: DEBUG
+    
+#hahahahahahah
