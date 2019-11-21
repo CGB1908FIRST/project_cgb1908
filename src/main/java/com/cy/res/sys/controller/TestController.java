@@ -5,6 +5,6 @@ public class TestController {
 	public static void main(String[] args) {
 		System.out.println("test");
 		System.out.println("test2222");
-		System.out.println("呀屎拉你");
+		System.out.println("呀屎拉你1");
 	}
 }
