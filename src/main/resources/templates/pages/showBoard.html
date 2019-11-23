@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<li><a id="showShop">显示商店</a></li>
+	<section id="mainContentId" class="content container-fluid">
+
+	</section>
+	<script src="jquery/jquery.min.js"/>
+	<script type="text/javascript">
+		$(function(){
+			doLoadUI("showShop", "sys/shopPage");
+		});
+		
+		function doLoadUI(id,url){
+			$("#"+id).click(function(){//时间处理函数  回调函数
+				//在mainContentId位置,异步请求url对应的资源
+				//服务端响应的数据,会插入到mainCOntentId对应的位置
+				//其中:load函数为jQuery中的一个ajax函数
+				$("#mainContentId").load(url);
+			});
+		}
+	</script>
+</body>
+</html>

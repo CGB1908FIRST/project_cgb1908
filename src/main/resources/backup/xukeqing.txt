@@ -1,0 +1,5 @@
+----------
+2019/11/22
+完成首页数据显示、分类数据展示、地区数据展示
+根据页面点击的按钮不同实现首页数据按照产品的pruduct_core
+或者product_sell_num或者product_current_prize排序(ProductServiceImple实现)
