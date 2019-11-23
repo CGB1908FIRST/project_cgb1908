@@ -28,4 +28,5 @@ public class ProductController {
 		List<ProductEntity> productList = productService.findAllProduct(colnum);
 		return new JsonResult(productList);
 	}
+
 }
