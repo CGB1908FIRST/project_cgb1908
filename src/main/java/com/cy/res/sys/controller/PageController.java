@@ -1,8 +1,9 @@
 package com.cy.res.sys.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
@@ -23,5 +24,13 @@ public class PageController {
 	@RequestMapping("shopEdit")
 	public String shopEdit() {
 		return "shopEdit";
+	}
+	@RequestMapping("{moduleUI}")
+	public String doModuleUI(@PathVariable String moduleUI) {
+		return  moduleUI;
+	}
+	@RequestMapping("doInsert")
+	public String doInsert() {
+		return "doInsert";
 	}
 }

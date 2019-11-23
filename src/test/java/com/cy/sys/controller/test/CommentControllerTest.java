@@ -8,7 +8,7 @@ import com.cy.res.sys.controller.CommentController;
 
 
 
-/**这个测试类用来测试CommentControllerTest里面的方法
+/**这个测试类用来测试CommentController里面的方法
  * @author xiezhonghuia
  *
  */

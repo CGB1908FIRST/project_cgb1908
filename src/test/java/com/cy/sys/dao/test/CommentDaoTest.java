@@ -7,6 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cy.res.sys.dao.CommentDao;
 import com.cy.res.sys.entity.CommentEntity;
 
+/**这个测试类用来测试CommentDao里面的方法
+ * @author xiezhonghuia
+ *
+ */
 @SpringBootTest
 public class CommentDaoTest {
 	
