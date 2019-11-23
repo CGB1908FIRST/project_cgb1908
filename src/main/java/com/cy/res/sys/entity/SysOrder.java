@@ -2,8 +2,8 @@ package com.cy.res.sys.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import lombok.Data;
+
 @Data
 public class SysOrder implements Serializable {
 

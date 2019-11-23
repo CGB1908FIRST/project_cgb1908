@@ -28,4 +28,9 @@ public class ShopInfoController {
 		shopInfoService.updateShopInfo(shopInfo);
 		return new JsonResult("update ok");
 	}
+	@RequestMapping("DoFindAllShopInfo")
+	public JsonResult DoFindAllShopInfo(ShopInfo shopInfo) {
+		List<ShopInfo> shopList = shopInfoService.findAllShop();
+		return new JsonResult(shopList);
+	}
 }

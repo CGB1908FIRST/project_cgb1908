@@ -7,45 +7,157 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <!-- <link rel="icon" href="../../favicon.ico"> -->
 <!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.min.css"rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/css/res.css" rel="stylesheet">
 <link href="theme.css" rel="stylesheet">
 <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <title>首页</title>
+<style type="text/css">
+.myglyphicon {
+	color: white;
+	margin: 10px 20px;
+	font-size: 20px;
+	text-shadow: rgb(0, 255, 0) 3px 3px 3px;
+	font-size: 20px;
+}
+</style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Project name</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<nav class="navbar navbar-default navbar-inverse navbar-static-top"
+					role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span><span
+								class="icon-bar"></span><span class="icon-bar"></span><span
+								class="icon-bar"></span>
+						</button>
+						<span class="glyphicon glyphicon-heart myglyphicon">好兄弟</span>
+					</div>
+
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">首页</a></li>
+							<li><a href="#">全部商品</a></li>
+							<li><a href="#">所有卖家</a></li>
+						</ul>
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" />
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+						<button type="button" class="btn btn-default btn-sm"
+							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;">
+							登录</button>
+						<button type="button" class="btn btn-default btn-sm"
+							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;">
+							注册</button>
+					</div>
+
+				</nav>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<ul class="nav nav-pills">
+							<li><span class="glyphicon glyphicon-cutlery"
+								style="color: rgb(255, 140, 60); margin-top: 10px"> 热门订餐</span></li>
+							<li th:each="a:${areaList}"><a th:text="${a.areaName}"
+								th:onclick="javascript:findByCategory([[${a.areaId}]])" href="" /></li>
+						</ul>
+						<ul class="nav nav-pills">
+							<li><span class="glyphicon glyphicon-map-marker"
+								style="color: rgb(255, 140, 60); margin-top: 10px"> 全部区域</span></li>
+							<li th:each="c:${categoryList}"><a
+								th:text="${c.categoryName}"
+								th:onclick="javascript:findByCategory([[${c.categoryId}]])"
+								href="" /></li>
+						</ul>
+					</div>
+				</div>
+				<ul class="nav nav-tabs" style="margin-top: 50px">
+					<li class="active"><a href="#">默认排序</a></li>
+					<li><a href="#">销量<span
+							class="glyphicon glyphicon-arrow-down"
+							style="color: rgb(255, 140, 60);" /></a></li>
+					<li><a href="#">价格<span
+							class="glyphicon glyphicon-arrow-up"
+							style="color: rgb(255, 140, 60);" /></a></li>
 				</ul>
+				<div class="row clearfix">
+					<div class="col-md-3 column" th:each="p:${productList}">
+						<div class="good-hover"
+							style="padding-top: 20px; margin-top: 10px; margin-bottom: 10px">
+							<a href="#/detail" style="text-decoration:none;">
+								<div class="preview center-block">
+									<!-- 图片 208 156-->
+									<img src="${p.productImgUrl}" style="width: 228px; height: 171px;"
+										class="img-rounded">
+								</div>
+								<div class="content center-block">
+									<dl style="margin-bottom: 10px">
+										<div class="name">
+											<span>
+												<dt class="good-tittle">[[${p.productName}]]</dt>
+											</span>
+										</div>
+										<div class="describe">
+											<dd class="describe-font">[[${p.productSubtitle}]]</dd>
+										</div>
+									</dl>
+									<div class="rank">
+										<div style="position: relative; font-size: 10px; color: #f76120;display: inline-block;">
+											<div>
+												<span class="glyphicon glyphicon-heart-empty"
+													aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+											</div>
+											<!--width属性的值为评分乘以font-size属性的值  -->
+											<div
+												style="position: absolute; left: 0; top: 0; overflow: hidden; text-overflow: clip; white-space: nowrap;display: inline-block;"
+												th:styleappend="'width:'+ (${p.productCore}*12.1)+'px'">
+												<span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+													class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+											</div>
+										</div>
+
+										<span class="describe-font">[[${p.productCore}]]分</span> <span class="fr"
+											style="color: #fa9700;">已售[[${p.productSellNum}]]单</span>
+									</div>
+									<div class="prize">
+										<span><span class="sell-prize" style="color: #f76120;">&yen;[[${p.productCurrentPrize}]]</span><span
+											class="describe-font">&nbsp;门店价&nbsp;<del> &yen;
+													[[${p.productOriginalPrize}]] </del></span></span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!--/.nav-collapse -->
 		</div>
-	</nav>
+	</div>
 </body>
+<script type="text/javascript">
+	$(function() {
+		
+
+	});
+	function findByCategory(categoryId) {
+		alert(categoryId);
+	}
+	
+</script>
 </html>
