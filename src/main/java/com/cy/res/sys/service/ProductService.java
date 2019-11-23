@@ -16,4 +16,15 @@ public interface ProductService {
 	 * @return
 	 */
 	List<ProductEntity> findAllProduct(String colnum);
-}
+      
+	/** 
+	 * 通过商品id删除信息
+	 * @author liuhaibo
+	 * @return
+	 */
+	int doDeleteObject(Integer id);
+
+	int insert(ProductEntity entity);
+
+		
+	}
