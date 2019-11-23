@@ -37,6 +37,7 @@
 
 	</section>
 	<script src="jquery/jquery.min.js"></script>
+	
 	<script type="text/javascript">
 	
 	$(function(){
@@ -58,7 +59,7 @@
 	
 	
 	function callback(result){
-		console.log(result);
+		 //console.log(result);
 		$("#shopName").val(result.data[0].shopName);
 		$("#shopAddress").val(result.data[0].shopAddress);
 		$("#shopMessage").val(result.data[0].shopMessage);

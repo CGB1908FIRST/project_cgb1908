@@ -2,8 +2,6 @@ package com.cy.res.sys.service.impl;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +29,11 @@ public class ShopInfoServiceImpl implements ShopInfoService {
 			throw new RuntimeException("该用户已经不存在");
 		}
 		return rows;
+	}
+
+	@Override
+	public List<ShopInfo> findAllShop() {
+		return shopDao.findAllShop();
 	}
 
 }

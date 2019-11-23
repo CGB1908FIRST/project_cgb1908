@@ -8,6 +8,10 @@ import com.cy.res.sys.entity.ShopInfo;
 
 @Mapper
 public interface ShopDao {
+	
+	//查询所有商店信息
+	public List<ShopInfo> findAllShop();
+	
 	//根据用户id查找商店信息
 	public List<ShopInfo> findShopInfoByMemberId(Integer memberId);
 	

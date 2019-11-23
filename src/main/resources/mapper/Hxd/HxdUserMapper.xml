@@ -23,6 +23,6 @@
 	<select id="findOneBySaltPassword" resultType="com.cy.res.sys.entity.HxdUser">
 		select * from user where user_id = #{userId} and user_password = #{SaltPassword}
 	</select>
-
+ 
 
 </mapper>

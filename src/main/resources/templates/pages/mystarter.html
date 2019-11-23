@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="theme.css" rel="stylesheet">
+<script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span><span
+								class="icon-bar"></span><span class="icon-bar"></span><span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">想吃</a>
+					</div>
+
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Link</a></li>
+							<li><a href="#">Link</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+									<li class="divider"></li>
+									<li><a href="#">One more separated link</a></li>
+								</ul></li>
+						</ul>
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" />
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#">Link</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</nav>
+				<div class="col-md-1 column" style="margin-top: 100px">
+					<div class=" btn-group btn-group-vertical btn-group-lg">
+						<button class="btn btn-default" type="button" id="shopMessage">
+							<em class="glyphicon glyphicon-align-left"></em> 商店信息
+						</button>
+						<button class="btn btn-default" type="button">
+							<em class="glyphicon glyphicon-align-center"></em> 发布商品
+						</button>
+						<button class="btn btn-default" type="button">
+							<em class="glyphicon glyphicon-align-right"></em> 商品管理
+						</button>
+						<button class="btn btn-default" type="button">
+							<em class="glyphicon glyphicon-align-justify"></em> 订单查询
+						</button>
+					</div>
+				</div>
+				<div class="col-md-4 column" style="margin: 50px 100px px 100px">
+					<section id="mainContentId" class="content container-fluid">
+						<div class="container" style="margin:50px 100px 150px 100px">
+							<div class="row clearfix">
+								<div class="col-md-9 column">
+									<div class="jumbotron">
+										<h1> 好兄弟餐饮      &nbsp  &nbsp 欢迎您</h1>
+										<p>好兄弟餐饮，是一家国内独资的中式快餐连锁企业，
+										公司主要经营以“龙文米粉”为主品牌的一系列健康快餐连锁项目，
+										多年来的实干发展，目前已形成全国范围内以北京、上海、深圳等地的“龙文米粉”品牌的快餐连锁模式，
+										公司以“良心品质、健康美食”为经营理念，
+										多次荣获各项大奖，并获得了餐饮行业“桂林老字号”的荣誉称号，
+										“龙文米粉”现已发展成为中国餐饮企业一个极具民族风味特色和影响力的连锁餐饮品牌！</p>
+										<p>
+											<a class="btn btn-primary btn-large" href="#">Learn more</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			doLoadUI("showShopInfo", "shopMessage");
+		});
+
+		function doLoadUI(url, id) {
+			$("#" + id).click(function() {
+				$("#mainContentId").load(url);
+			})
+		}
+	</script>
+
+</body>
+</html>

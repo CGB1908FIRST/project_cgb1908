@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.cy.res.sys.dao.ProductDao;
 import com.cy.res.sys.entity.ProductEntity;
 import com.cy.res.sys.service.ProductService;
@@ -46,5 +47,30 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductEntity> productList = Arrays.asList(productArray);
 		return productList;
 	}
+	/**
+	 * 通过商品id删除信息
+	 * @author liuhaibo
+	 */
+	@Override
+	public int doDeleteObject(Integer id) {
+		//1.合法性验证
+				if(id==null||id<=0)
+				throw new ServiceException("数据不合法,id="+id);
+				//2.3执行删除操作
+				int rows=productDao.deleteObject(id);
+				if(rows==0)
+				throw new ServiceException("此信息可能已经不存在");
+				return rows;
+	}
+/**
+ * 添加商品信息
+ * @author liuhaibo
+ */
+	@Override
+	public int insert(ProductEntity entity) {
+	
+		return 0;
+		
+	}
+	}
 
-}

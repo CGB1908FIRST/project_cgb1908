@@ -122,6 +122,9 @@ insert into member values(null,'王五','13435668623','123453','肯鸡鸡3','番禺员岗
 insert into member values(null,'赵六','13435668624','123454','肯鸡鸡4','番禺员岗地铁口4','商店图片地址4','商店信息1','1',NOW(),NOW(),'创建用户4','修改用户4');
 insert into member values(null,'小张','13435668625','123455','肯鸡鸡5','番禺员岗地铁口5','商店图片地址5','商店信息1','1',NOW(),NOW(),'创建用户5','修改用户5');
 insert into category values(null,'小吃',null,null,'test','test');
+insert into category values(null,'西餐',null,null,'test','test');
+insert into category values(null,'中餐',null,null,'test','test');
+insert into category values(null,'甜点',null,null,'test','test');
 insert into product values(null,'肉松饼','肉松饼',5.8,20,4.5,4.5,'image/rousong',1,1,NOW(),NOW(),'创建用户1','修改用户1');
 insert into product values(null,'炒饭','炒饭',10.8,25,9.0,4.0,'image/chaofan',1,1,NOW(),NOW(),'创建用户1','修改用户1');
 
