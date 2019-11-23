@@ -11,6 +11,6 @@ public interface HxdUserService {
 	
 	int insertObject(HxdUser userData);
 	
-	int isLogin(String username,String password);
+	int isLogin(String username,String password,Boolean isRememberMe);
 //	List<HxdUser> findOnebyLoginName(String LoginName);
 }

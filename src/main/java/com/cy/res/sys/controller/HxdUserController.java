@@ -18,4 +18,10 @@ public class HxdUserController {
 		hxdUserService.insertObject(userData);
 		return new JsonResult("恭喜,注册成功");
 	}
+	@RequestMapping("dologin")
+	public JsonResult doLogin(String username,String password,Boolean isRemenberMe) {
+		hxdUserService.isLogin(username, password,isRemenberMe);
+		System.out.println("HxdUserController.doLogin()");
+		return new JsonResult("登陆成功!");
+	}
 }

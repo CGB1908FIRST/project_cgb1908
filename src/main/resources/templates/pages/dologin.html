@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+* {
+	border: none;
+	text-decoration: none;
+}
+
+.login {
+	width: 536px;
+	height: 476px;
+}
+
+.once {
+	width: 480px;
+	height: 50px;
+	margin-top: 30px;
+	margin-left: 35px;
+	padding: 3px 10px;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+}
+
+.sub {
+	width: 500px;
+	height: 60px;
+	margin-top: 30px;
+	margin-left: 35px;
+	background-color: #3580eb;
+	color: #fff;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 24px;
+}
+
+.title_top {
+	font-size: 44px;
+	margin-left: 35px;
+}
+
+.titce {
+	font-size: 28px;
+	margin-bottom: 64px;
+	line-height: 1.2;
+	color: #333;
+}
+
+.text_down {
+	margin-left: 35px;
+	width: 480px;
+	height: 15px;
+	line-height: 40px;
+}
+
+.jump {
+	float: right;
+	color: #359eff;
+	font-size: 24px;
+}
+
+.phone {
+	margin-bottom: 10px;
+}
+
+.checkbox {
+	flaot: left;
+	display: inline-block;
+}
+
+.check {
+	width: 112px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 20px;
+	margin-top: 30px;
+	margin-left: 35px;
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+}
+
+.inp {
+	float: right;
+	display: inline-block;
+}
+
+.inp_num {
+	width: 300px;
+	height: 50px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+	padding: 0 20px;
+	margin-top: 30px;
+	margin-left: 35px;
+	border-radius: 4px;
+}
+
+.phone_pass {
+	font-size: 14px;
+	width: 260px;
+	margin-top: 8px;
+	margin-left: 35px;
+	color: #999;
+}
+</style>
+</head>
+<body>
+	<div class=login>
+		<div class="title_top">欢迎登陆好兄弟账号</div>
+		<div class="titce">
+			<div class="text_down">好吃美味,立即享受。</div>
+		</div>
+		<span> 
+			<input id="username" type="text" class="once"placeholder="请输入帐号">
+			<input id="password" type="password" class="once" placeholder="请输入密码">
+			<input id="isRemenberMe" type="checkbox" />
+			<span>记住密码</span>
+			<input id="isRemenberMe" type="checkbox" />
+			<span>忘记密码</span>
+			<input type="button" value="立即登陆" class="sub">
+		</span>
+	</div>
+</body>
+</html>
+<script src="jquery/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input[type='button']").click(dologin);
+	});
+	//向后台发起请求,验证账号密码
+	function dologin(){
+		var un = $("input[type='text']").val();
+		var pw = $("input[type='password']").val();
+		const url="/user/dologin";
+		var data = {
+			"username" : un,
+			"password" : pw,
+			"isRemenberMe":true
+		}
+		$.post(url,data,function(result){
+			if (result.state == 1) {
+				alert(result.message);
+			} else {
+				alert(result.message);
+			}
+		})
+	}
+</script>

@@ -12,8 +12,7 @@
 		#{userCreateTime},#{createdTime},#{modifiedTime},#{createdUser},#{modifiedUser},#{salt})
 	</insert>
 
-	<select id="findOnebyLoginName"
-		resultType="com.cy.res.sys.entity.HxdUser">
+	<select id="findOnebyLoginName" resultType="com.cy.res.sys.entity.HxdUser">
 		select * from user where user_login_name =
 		(#{userLoginName})
 	</select>

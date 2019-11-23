@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+* {
+	border: none;
+	text-decoration: none;
+}
+
+.regist {
+	width: 536px;
+	height: 476px;
+}
+
+.once {
+	width: 480px;
+	height: 50px;
+	margin-top: 30px;
+	margin-left: 35px;
+	padding: 3px 10px;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+}
+
+.sub {
+	width: 500px;
+	height: 60px;
+	margin-top: 30px;
+	margin-left: 35px;
+	background-color: #3580eb;
+	color: #fff;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 24px;
+}
+
+.title_top {
+	font-size: 44px;
+	margin-left: 35px;
+}
+
+.titce {
+	font-size: 28px;
+	margin-bottom: 64px;
+	line-height: 1.2;
+	color: #333;
+}
+
+.text_down {
+	margin-left: 35px;
+	width: 480px;
+	height: 15px;
+	line-height: 40px;
+}
+
+.jump {
+	float: right;
+	color: #359eff;
+	font-size: 24px;
+}
+
+.phone {
+	margin-bottom: 10px;
+}
+
+.checkbox {
+	flaot: left;
+	display: inline-block;
+}
+
+.check {
+	width: 112px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 20px;
+	margin-top: 30px;
+	margin-left: 35px;
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+}
+
+.inp {
+	float: right;
+	display: inline-block;
+}
+
+.inp_num {
+	width: 300px;
+	height: 50px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+	padding: 0 20px;
+	margin-top: 30px;
+	margin-left: 35px;
+	border-radius: 4px;
+}
+
+.phone_pass {
+	font-size: 14px;
+	width: 260px;
+	margin-top: 8px;
+	margin-left: 35px;
+	color: #999;
+}
+</style>
+</head>
+<body>
+	<div class="regist">
+		<div class="title_top" >欢迎注册好兄弟账号</div>
+		<div class="titce">
+			<div class="text_down">好吃美味,立即享受。</div>
+			<a href="#" class="jump" style="display: none">商家入驻</a>
+		</div>
+		<span> 
+			<input id="username" type="text" class="once"placeholder="请输入昵称">
+			<input id="password" type="password" class="once" placeholder="请输入密码">
+			<input id="repassword" type="password" class="once" placeholder="请再一次输入密码">
+			<div class="phone">
+				<div class="checkbox">
+					<select name="num" class="check">
+						<option>+86</option>
+					</select>
+				</div>
+				<div class="inp">
+					<input placeholder="手机号码" class="inp_num">
+				</div>
+				<div class="phone_pass">可通过该手机号找回密码</div>
+			</div>
+			<input type="button" value="立即注册" class="sub">
+		</span>
+	</div>
+</body>
+</html>
+<script src="jquery/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input[type='button']").click(doregist);
+	});
+	//向后台发起请求,验证账号密码
+	function doregist(){
+		var nn = $("input[type='text']").val();
+		var pw = $("input[type='password']").val();
+		
+		const url="/user/regist";
+		var data = {
+			"userLoginName" : nn,
+			"userPassword" : pw,
+		}
+		$.post(url,data,function(result){
+			if (result.state == 1) {
+				alert(result.message);
+			} else {
+				alert(result.message);
+			}
+		})
+	}
+</script>
