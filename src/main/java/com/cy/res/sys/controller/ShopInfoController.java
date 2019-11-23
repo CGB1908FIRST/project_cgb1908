@@ -22,8 +22,9 @@ public class ShopInfoController {
 		List<ShopInfo> data = shopInfoService.findShopInfoByMemberId(memberId);
 		return new JsonResult(data);
 	}
-	@RequestMapping("")
+	@RequestMapping("updateShopInfo")
 	public JsonResult updateShopInfo(ShopInfo shopInfo) {
+		
 		shopInfoService.updateShopInfo(shopInfo);
 		return new JsonResult("update ok");
 	}

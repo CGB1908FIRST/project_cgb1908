@@ -13,6 +13,7 @@ import com.cy.res.sys.service.ProductService;
 
 /**
  * product控制层对象用于接收和响应页面和product相关的请求
+ * 
  * @author xukeqing
  *
  */
@@ -23,27 +24,21 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
+
 	@RequestMapping("doFindAllProduct")
 	public JsonResult doFindAllProduct(String colnum) {
 		List<ProductEntity> productList = productService.findAllProduct(colnum);
 		return new JsonResult(productList);
 	}
-	
+
 	/**
 	 * 
 	 * @param 通过商品id删除
 	 * @return liuhaibo
 	 */
-@RequestMapping("doDeleteObject")
-public JsonResult doDeleteObject(Integer id) {
-	productService.doDeleteObject(id);
-	return new JsonResult("delete ok");
-	@RequestMapping()
-	/**
-	   * 添加商品信息
-	 * @author liuhaibo
-	 */
-	@RequestMapping("")
-}
+	@RequestMapping("doDeleteObject")
+	public JsonResult doDeleteObject(Integer id) {
+		productService.doDeleteObject(id);
+		return new JsonResult("delete ok");
+	}
 }

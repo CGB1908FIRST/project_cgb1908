@@ -1,0 +1,89 @@
+<div class="container">
+	<div class="row clearfix" style="margin-left: 100px">
+		<div class="col-md-6 column" style="margin: 80px 0px 100px 0px">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label" >商店名</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control"  id="shopName"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="shopAddress" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">公告</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="shopAddresss" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">负责人</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="memberName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">负责人电话</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="memberPhone" />
+					</div>
+				</div>
+				<div class="form-group" style="margin-left: 160px">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default"
+							id="updateShopMessage">修改信息</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-6 column" style="margin-top: 150px">
+			<img alt="280x280" src="shopImg/mcd.png" id="shopImg"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		
+		var url = "findShopInfo";
+		var params = {"memberId" : 2};
+		$.getJSON(url, params, showShopInfo);
+		
+		$("#updateShopMessage").click(updateShopMessage);
+	});
+
+
+	function showShopInfo(result) {
+		console.log(result);
+		console.log(result.data[0].shopMessage);
+		$("#shopName").val(result.data[0].shopName);
+		$("#shopAddress").val(result.data[0].shopAddress);
+		$("#shopAddresss").val(result.data[0].shopMessage);
+		$("#memberName").val(result.data[0].memberName);
+		$("#memberPhone").val(result.data[0].memberPhone);
+		$("#shopImg").prop("src", result.data[0].shopImgUrl);
+	};
+	
+	function updateShopMessage(){
+		var re = confirm("确认更新吗?");
+		var url = "updateShopInfo";
+		var params={
+			     "shopName":$("#shopName").val(),
+			     "shopAddress":$("#shopAddress").val(),
+			     "shopMessage":$("#shopAddresss").val(),
+			     "memberName":$("#memberName").val(),
+			     "memberPhone":$("#memberPhone").val(),
+			     "memberId":2
+			  }
+		$.post(url,params,function(result){
+			if(result.state==1){
+				alert(result.message);
+			}else{
+				alert(result.message);
+			}
+		})
+	}
+</script>

@@ -12,9 +12,13 @@ public class PageController {
 	public String doHomeUI(Model model) {
 		return "home";
 	}
-	@RequestMapping("shopBoard")
+	@RequestMapping("showShopInfo")
 	public String shopBoard() {
-		return "showBoard";
+		return "shopInfoPage";
+	}
+	@RequestMapping("starter")
+	public String mystarter() {
+		return "mystarter";
 	}
 	@RequestMapping("shopPage")
 	public String shopPage() {
