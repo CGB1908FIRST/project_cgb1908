@@ -107,21 +107,53 @@
 	margin-left: 35px;
 	color: #999;
 }
+#isRemenberMe{
+	line-height: 30px;
+    font-size: 13px;
+    color: #aaa;
+}
+#checkbox-1 {
+    display: none;
+}
+ 
+#checkbox-1 + label { 
+    color: red;
+}
+ 
+#checkbox-1:checked + label {
+    color: blue;
+}  
+
+.clickme{
+	width: 150px;
+	height: 50px;
+	border: 1px #aaa solid;
+	margin-left: 35px;
+	margin-top: 30px;
+	border-radius: 4px;
+	font-size: 20px;
+	padding: 3px 10px;
+	
+}
+label{
+	padding-top: 5px;
+}
 </style>
 </head>
 <body>
 	<div class=login>
-		<div class="title_top">欢迎登陆好兄弟账号</div>
+		<div class="title_top">欢迎登陆好兄弟</div>
 		<div class="titce">
 			<div class="text_down">好吃美味,立即享受。</div>
 		</div>
-		<span> 
+		<span>
 			<input id="username" type="text" class="once"placeholder="请输入帐号">
 			<input id="password" type="password" class="once" placeholder="请输入密码">
-			<input id="isRemenberMe" type="checkbox" />
-			<span>记住密码</span>
-			<input id="isRemenberMe" type="checkbox" />
-			<span>忘记密码</span>
+			<!-- <input id="isRemenberMe" type="checkbox" class="slideOne"/> -->
+			<div class ="clickme">
+				<input type="checkbox" id="checkbox-1" />
+				<label for="checkbox-1">记住密码点我</label>
+			</div>
 			<input type="button" value="立即登陆" class="sub">
 		</span>
 	</div>

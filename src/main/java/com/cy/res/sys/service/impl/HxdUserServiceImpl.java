@@ -1,7 +1,11 @@
 package com.cy.res.sys.service.impl;
 
+import java.util.HashMap;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.catalina.User;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +13,7 @@ import org.springframework.util.StringUtils;
 
 import com.cy.res.sys.dao.HxdUserDao;
 import com.cy.res.sys.entity.HxdUser;
+import com.cy.res.sys.entity.UserNode;
 import com.cy.res.sys.service.HxdUserService;
 import com.cy.res.sys.service.impl.realm.HxdUserNoteMsg;
 @Service
@@ -21,11 +26,10 @@ public class HxdUserServiceImpl implements HxdUserService{
 	/**
 	 * 注册用户
 	 */
-	public int insertObject(HxdUser userData) {
+	public int insertObject(HxdUser userData,HttpServletRequest request) {
 		//验证数据
 		if(userData==null)
 			throw new ServiceException("user数据空的");
-		
 //		if(StringUtils.isEmpty(userData.getUserNickName()))
 //			throw new ServiceException("昵称啊,(>﹏<)");
 		if(StringUtils.isEmpty(userData.getUserPhone()))
@@ -34,10 +38,17 @@ public class HxdUserServiceImpl implements HxdUserService{
 			throw new ServiceException("名字都没有,滚呐,沙雕");
 		if(StringUtils.isEmpty(userData.getUserPassword()))
 			throw new ServiceException("密码都没有,滚呐,猪头");
-		//判断用户名是否已存在
-		HxdUser loginnama = hxdUserDao.findOnebyLoginName(userData.getUserLoginName());
-		if(loginnama!=null) 
-			throw new ServiceException("该用户名已存在");
+		if(StringUtils.isEmpty(userData.getCode()))
+			throw new ServiceException("没有验证码,快走开,略略略");
+		HashMap<String, Object> note =(HashMap)request.getSession().getAttribute("CMap");
+		Object date = note.get("date");
+		String sixNum =(String) note.get("sixNum");
+		if(!sixNum.equals(userData.getCode()))
+			throw new ServiceException("验证码有误，注册失败了(>﹏<)");
+		
+		//UserNode noteData =(UserNode) request.getAttribute("nodeData");
+//		if(userData.getCode()==note.getSixNum())
+//			throw new ServiceException("验证码有误，注册失败了(>﹏<)");
 		String password = userData.getUserPassword();//获取密码
 		String salt=UUID.randomUUID().toString();//获取盐值
 		SimpleHash sh=new SimpleHash(//Shiro框架
@@ -81,6 +92,16 @@ public class HxdUserServiceImpl implements HxdUserService{
 		if(userdata==null||StringUtils.isEmpty(userdata))
 			throw new ServiceException("账户名或者密码错误");
 		
+		return 1;
+	}
+	/**判断用户是否存在*/
+	@Override
+	public int findUserByUsername(String username) {
+		if(username==null)
+			throw new ServiceException("用户名不能为空呢");
+		int loginname = hxdUserDao.findOnebyLoginName(username);
+		if(loginname>0)
+			throw new ServiceException("该用户名已存在，大人换一个吧");
 		return 1;
 	}
 

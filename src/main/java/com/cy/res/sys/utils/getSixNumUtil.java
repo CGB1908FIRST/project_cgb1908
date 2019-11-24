@@ -11,6 +11,6 @@ public class getSixNumUtil {
 		{
 			result+=random.nextInt(10);
 		}
-		return "{\"code\":\""+result+"\"}";
+		return result;
 	}
 }
