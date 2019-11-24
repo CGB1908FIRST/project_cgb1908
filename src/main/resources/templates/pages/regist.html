@@ -67,7 +67,6 @@
 }
 
 .checkbox {
-	flaot: left;
 	display: inline-block;
 }
 
@@ -85,12 +84,13 @@
 }
 
 .inp {
-	float: right;
+	
 	display: inline-block;
 }
 
+
 .inp_num {
-	width: 300px;
+	width: 274px;
 	height: 50px;
 	border: 1px #aaa solid;
 	font-size: 20px;
@@ -98,8 +98,22 @@
 	margin-top: 30px;
 	margin-left: 35px;
 	border-radius: 4px;
+	float: left	;
+	display: inline-block;
 }
-
+ 
+ .send{
+	width: 150px;
+	height: 50px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+	padding: 0 20px;
+	margin-top: 30px;
+	margin-left: 35px;
+	border-radius: 4px;
+	float: right;
+	display: inline-block;
+}
 .phone_pass {
 	font-size: 14px;
 	width: 260px;
@@ -119,19 +133,15 @@
 		<span> 
 			<input id="username" type="text" class="once"placeholder="请输入昵称">
 			<input id="password" type="password" class="once" placeholder="请输入密码">
-			<input id="repassword" type="password" class="once" placeholder="请再一次输入密码">
+			<input id="repassword" type="password" class="once" placeholder="请再次输入密码">
 			<div class="phone">
 				<div class="checkbox">
-					<select name="num" class="check">
-						<option>+86</option>
-					</select>
-				</div>
-				<div class="inp">
 					<input placeholder="手机号码" class="inp_num">
+					<input type="button" value="发送短信" class="send">
 				</div>
-				<div class="phone_pass">可通过该手机号找回密码</div>
+				 <div class="phone_pass">可通过该手机号找回密码</div>
 			</div>
-			<input type="button" value="立即注册" class="sub">
+			<input type="button" value="立即注册" class="sub" id="setup">
 		</span>
 	</div>
 </body>
@@ -139,12 +149,17 @@
 <script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("input[type='button']").click(doregist);
+		$("#setup").click(doregist);
+		$(".send").click(domsg);
 	});
+	function domsg(){
+		var mobile = $(".inp_num").val();
+		const url = "/msg/send";
+	}
 	//向后台发起请求,验证账号密码
 	function doregist(){
-		var nn = $("input[type='text']").val();
-		var pw = $("input[type='password']").val();
+		var nn = $("#username").val();
+		var pw = $("#password").val();
 		
 		const url="/user/regist";
 		var data = {
