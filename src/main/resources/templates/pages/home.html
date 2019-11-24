@@ -61,66 +61,13 @@
 							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;">
 							注册</button>
 					</div>
-
 				</nav>
-				<div class="row clearfix">
-					<div class="col-md-12 column">
-						<div id="areaDiv">
-						<ul class="nav nav-pills" >
-							<li><span class="glyphicon glyphicon-map-marker"
-								style="color: rgb(255, 140, 60); margin-top: 10px"> 全部区域</span>
-								<input type="hidden" value="0"/>
-							</li>
-							<li class="active" style="margin-left: 10px;">
-								<a href="#">全部</a>
-								<input type="hidden" value="0"/>
-							</li>
-							<li th:each="a:${areaList}" >
-								<a th:text="${a.areaName}"href="#"/>
-								<input type="hidden" th:value="${a.areaId}"/>
-							</li>
-						</ul>
-						</div>
-						<div id="categoryDiv" style="margin-top: 10px;">
-						<ul class="nav nav-pills" >
-							<li><span class="glyphicon glyphicon-cutlery"
-								style="color: rgb(255, 140, 60); margin-top: 10px"> 热门订餐</span>
-								<input type="hidden" value="0"/>
-							</li>
-							<li class="active" style="margin-left: 10px;">
-								<a href="#">全部</a>
-								<input type="hidden" value="0"/>
-							</li>
-							<li th:each="c:${categoryList}">
-								<a th:text="${c.categoryName}"href="#"/>
-								<input type="hidden" th:value="${c.categoryId}"/>
-							</li>
-						</ul>
-						</div>
-					</div>
-				</div>
-				<div id="allProduct">
-				<ul class="nav nav-tabs" style="margin-top: 50px">
-					<li class="active">
-						<a href="#">默认排序</a>
-						<input type="hidden" value="default"/>
-					</li>
-					<li><a href="#">销量<span
-							class="glyphicon glyphicon-arrow-down"
-							style="color: rgb(255, 140, 60);" /></a>
-						<input type="hidden" value="productSellNum"/>
-					</li>
-					<li><a	href="#">价格<span
-							class="glyphicon glyphicon-arrow-up"
-							style="color: rgb(255, 140, 60);" />
-						</a>
-						<input type="hidden" value="productCurrentPrize"/>
-					</li>
-				</ul>
-				</div>
 				<div class="content-wrapper">
 				<div class="row clearfix">
 					<!-- Main content -->
+					<section id="selectOptionId">
+					
+					</section>
 					<section id="mainContentId">
 					
 					</section>
@@ -132,44 +79,21 @@
 </body>
 <script type="text/javascript">
 	$(function() {
-		doFindAllProduct(0,0,"default");
-		$("#areaDiv ul li").click(function(){
+		//doFindAllProduct(0,0,"default");
+		$("#bs-example-navbar-collapse-1 ul li").click(function(){
 		    //获取当前选中的地区的值
-		    //var areaValue =  $(this).find("a").eq(0).text();
-		    var areaValue =  $(this).find("input").val();
-		    setClassValue("#areaDiv ul li",$(this));
-		    //alert(areaValue);
-			//获取当前选中的分类的值     
-		    var categoryValue=getOptionValue("#categoryDiv ul li");
-		    //alert(categoryValue);
-			//获取当前选中的排序的值
-			var orderValue=getOptionValue("#allProduct ul li");
-			//alert(orderValue);
-			doFindAllProduct(areaValue,categoryValue,orderValue);
-		 });
-		$("#categoryDiv ul li").click(function(){
-		    //获取当前选中的分类的值
-		    var categoryValue =  $(this).find("input").val();
-		    setClassValue("#categoryDiv ul li",$(this));
-			//获取当前选中的地区的值     
-		    var areaValue=getOptionValue("#areaDiv ul li");
-		    //alert(areaValue);
-			//获取当前选中的排序的值
-			var orderValue=getOptionValue("#allProduct ul li");
-			//alert(orderValue)
-			doFindAllProduct(areaValue,categoryValue,orderValue);
-		 });
-		$("#allProduct ul li").click(function(){
-		    //获取当前选中的分类的值
-		    var orderValue =  $(this).find("input").val();
-		    setClassValue("#allProduct ul li",$(this));
-			//获取当前选中的地区的值     
-		    var areaValue=getOptionValue("#areaDiv ul li");
-		    //alert(areaValue);
-			//获取当前选中的排序的值排
-			var categoryValue=getOptionValue("#categoryDiv ul li");
-			//alert(orderValue)
-			doFindAllProduct(areaValue,categoryValue,orderValue);
+		    var areaValue =  $(this).find("a").eq(0).text();
+		    setClassValue("#bs-example-navbar-collapse-1 ul li",$(this));
+		    if(areaValue=="全部商品"){
+		    	doSelectOptions();
+		    	doFindAllProduct(0,0,"default");
+		    	return;
+		    }
+		    if(areaValue=="所有卖家"){
+		    	$("#selectOptionId").load("doFindAllProduct");
+		    	$("#mainContentId").empty();
+		    	return;
+		    }
 		 });
 	});
 	//获得当前选中的li的中<a>的值
@@ -199,8 +123,10 @@
 				"orderValue":orderValue
 		};
 		var url="/product/doFindAllProduct";
-		$("#mainContentId").load(url,params)
+		$("#mainContentId").load(url,params);
 	}
-	
+	function doSelectOptions(){
+		$("#selectOptionId").load("doSelectUI");
+	}
 </script>
 </html>

@@ -23,6 +23,10 @@ public class PageController {
 	private AreaService areaService;
 	/**返回首页页面*/
 	@RequestMapping("doHomeUI")
+	public String doHomeUI() {
+		return "home";
+	}
+	@RequestMapping("doSelectUI")
 	public String doHomeUI(Model model) {
 		//查询所有商品分类信息并封装到model
 		List<CategoryEntity> categoryList = categoryService.findAllCategory();
@@ -30,7 +34,7 @@ public class PageController {
 		//查询所有地区信息并封装到model
 		List<AreaEntity> areaList = areaService.findAllArea();
 		model.addAttribute("areaList", areaList);
-		return "home";
+		return "selectOption";
 	}
 	@RequestMapping("showShopInfo")
 	public String shopBoard() {

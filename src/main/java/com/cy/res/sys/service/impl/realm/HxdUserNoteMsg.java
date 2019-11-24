@@ -1,5 +1,6 @@
 package com.cy.res.sys.service.impl.realm;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.aliyuncs.CommonRequest;
@@ -13,6 +14,7 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.cy.res.sys.entity.HxdUser;
 import com.cy.res.sys.utils.getSixNumUtil;
 
+@Component
 public class HxdUserNoteMsg {
 	/**发送短信*/
 	public String SendMsg(String mobile) throws Exception{

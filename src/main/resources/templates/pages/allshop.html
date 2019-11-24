@@ -1,0 +1,39 @@
+<div style="margin-bottom: 16px; margin-left: 20px; margin-right: 18px;">
+	<!-- 下面是商店列表 -->
+	<div class="row cannot_select" style="">
+		<!-- 第三行 -->
+
+		<div class="col-md-12"
+			style="background-color: #fa9700; margin-bottom: 10px; border-radius: 4px;">
+			<h3 style="margin-top: 2px; margin-bottom: 3px; color: #EEE;">卖家列表</h3>
+		</div>
+	</div>
+	<div class="row cannot_select" style="">
+		<!-- 第四行 -->
+
+		<div class="col-md-10 aa" id="allshop">
+			<ul class="list-unstyled list-inline fontsize14">
+
+				<li th:each="s:${shopList}" th:onclick="showShopInfo([[${s.memberId}]]);"><a href="#">
+					<div>
+						<img src="${s.shopImgUrl}" style="width: 180px; height: 130px"class="img-rounded"/>
+							<span>
+								<dl>
+									<dt>[[${s.shopName}]]</dt>
+									<dd>[[${s.shopAddress}]]</dd>
+								</dl>
+							</span>
+					</div></a>
+				</li>
+
+				<!-- <div class="good-line" style="width:830px;float:left;margin-bottom:20px;"></div> -->
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function showShopInfo(memberId){
+		
+	}
+
+</script>

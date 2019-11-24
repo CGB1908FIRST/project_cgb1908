@@ -32,12 +32,6 @@ public class ProductController {
 		model.addAttribute("productList",productList);    
 		return "allproduct";
 	}
-	//@RequestMapping("doFindProductByCondition")
-	/*
-	 * public String doFindProductByCondition(String colnum,String value) {
-	 * 
-	 * }
-	 */
 	/**
 	 * 
 	 * @param 通过商品id删除
