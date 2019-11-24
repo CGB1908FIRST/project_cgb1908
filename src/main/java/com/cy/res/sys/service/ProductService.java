@@ -2,6 +2,7 @@ package com.cy.res.sys.service;
 
 import java.util.List;
 
+import com.cy.res.sys.entity.FindProductEntity;
 import com.cy.res.sys.entity.ProductEntity;
 
 /**
@@ -15,7 +16,7 @@ public interface ProductService {
 	 * 查询所有product
 	 * @return
 	 */
-	List<ProductEntity> findAllProduct(String colnum);
+	List<ProductEntity> findAllProduct(FindProductEntity findProductEntity);
       
 	/** 
 	 * 通过商品id删除信息

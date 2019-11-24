@@ -10,7 +10,7 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="/css/res.css" rel="stylesheet">
-<link href="theme.css" rel="stylesheet">
+<link  rel="icon" href="/shopImg/favicon.ico">
 <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 <script src="/jquery/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -65,86 +65,66 @@
 				</nav>
 				<div class="row clearfix">
 					<div class="col-md-12 column">
-						<ul class="nav nav-pills">
-							<li><span class="glyphicon glyphicon-cutlery"
-								style="color: rgb(255, 140, 60); margin-top: 10px"> 热门订餐</span></li>
-							<li th:each="a:${areaList}"><a th:text="${a.areaName}"
-								th:onclick="javascript:findByCategory([[${a.areaId}]])" href="" /></li>
-						</ul>
-						<ul class="nav nav-pills">
+						<div id="areaDiv">
+						<ul class="nav nav-pills" >
 							<li><span class="glyphicon glyphicon-map-marker"
-								style="color: rgb(255, 140, 60); margin-top: 10px"> 全部区域</span></li>
-							<li th:each="c:${categoryList}"><a
-								th:text="${c.categoryName}"
-								th:onclick="javascript:findByCategory([[${c.categoryId}]])"
-								href="" /></li>
+								style="color: rgb(255, 140, 60); margin-top: 10px"> 全部区域</span>
+								<input type="hidden" value="0"/>
+							</li>
+							<li class="active" style="margin-left: 10px;">
+								<a href="#">全部</a>
+								<input type="hidden" value="0"/>
+							</li>
+							<li th:each="a:${areaList}" >
+								<a th:text="${a.areaName}"href="#"/>
+								<input type="hidden" th:value="${a.areaId}"/>
+							</li>
 						</ul>
-					</div>
-				</div>
-				<ul class="nav nav-tabs" style="margin-top: 50px">
-					<li class="active"><a href="#">默认排序</a></li>
-					<li><a href="#">销量<span
-							class="glyphicon glyphicon-arrow-down"
-							style="color: rgb(255, 140, 60);" /></a></li>
-					<li><a href="#">价格<span
-							class="glyphicon glyphicon-arrow-up"
-							style="color: rgb(255, 140, 60);" /></a></li>
-				</ul>
-				<div class="row clearfix">
-					<div class="col-md-3 column" th:each="p:${productList}">
-						<div class="good-hover"
-							style="padding-top: 20px; margin-top: 10px; margin-bottom: 10px">
-							<a href="#/detail" style="text-decoration:none;">
-								<div class="preview center-block">
-									<!-- 图片 208 156-->
-									<img src="${p.productImgUrl}" style="width: 228px; height: 171px;"
-										class="img-rounded">
-								</div>
-								<div class="content center-block">
-									<dl style="margin-bottom: 10px">
-										<div class="name">
-											<span>
-												<dt class="good-tittle">[[${p.productName}]]</dt>
-											</span>
-										</div>
-										<div class="describe">
-											<dd class="describe-font">[[${p.productSubtitle}]]</dd>
-										</div>
-									</dl>
-									<div class="rank">
-										<div style="position: relative; font-size: 10px; color: #f76120;display: inline-block;">
-											<div>
-												<span class="glyphicon glyphicon-heart-empty"
-													aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-											</div>
-											<!--width属性的值为评分乘以font-size属性的值  -->
-											<div
-												style="position: absolute; left: 0; top: 0; overflow: hidden; text-overflow: clip; white-space: nowrap;display: inline-block;"
-												th:styleappend="'width:'+ (${p.productCore}*12.1)+'px'">
-												<span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
-													class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-											</div>
-										</div>
-
-										<span class="describe-font">[[${p.productCore}]]分</span> <span class="fr"
-											style="color: #fa9700;">已售[[${p.productSellNum}]]单</span>
-									</div>
-									<div class="prize">
-										<span><span class="sell-prize" style="color: #f76120;">&yen;[[${p.productCurrentPrize}]]</span><span
-											class="describe-font">&nbsp;门店价&nbsp;<del> &yen;
-													[[${p.productOriginalPrize}]] </del></span></span>
-									</div>
-								</div>
-							</a>
+						</div>
+						<div id="categoryDiv" style="margin-top: 10px;">
+						<ul class="nav nav-pills" >
+							<li><span class="glyphicon glyphicon-cutlery"
+								style="color: rgb(255, 140, 60); margin-top: 10px"> 热门订餐</span>
+								<input type="hidden" value="0"/>
+							</li>
+							<li class="active" style="margin-left: 10px;">
+								<a href="#">全部</a>
+								<input type="hidden" value="0"/>
+							</li>
+							<li th:each="c:${categoryList}">
+								<a th:text="${c.categoryName}"href="#"/>
+								<input type="hidden" th:value="${c.categoryId}"/>
+							</li>
+						</ul>
 						</div>
 					</div>
+				</div>
+				<div id="allProduct">
+				<ul class="nav nav-tabs" style="margin-top: 50px">
+					<li class="active">
+						<a href="#">默认排序</a>
+						<input type="hidden" value="default"/>
+					</li>
+					<li><a href="#">销量<span
+							class="glyphicon glyphicon-arrow-down"
+							style="color: rgb(255, 140, 60);" /></a>
+						<input type="hidden" value="productSellNum"/>
+					</li>
+					<li><a	href="#">价格<span
+							class="glyphicon glyphicon-arrow-up"
+							style="color: rgb(255, 140, 60);" />
+						</a>
+						<input type="hidden" value="productCurrentPrize"/>
+					</li>
+				</ul>
+				</div>
+				<div class="content-wrapper">
+				<div class="row clearfix">
+					<!-- Main content -->
+					<section id="mainContentId">
+					
+					</section>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -152,11 +132,74 @@
 </body>
 <script type="text/javascript">
 	$(function() {
-		
-
+		doFindAllProduct(0,0,"default");
+		$("#areaDiv ul li").click(function(){
+		    //获取当前选中的地区的值
+		    //var areaValue =  $(this).find("a").eq(0).text();
+		    var areaValue =  $(this).find("input").val();
+		    setClassValue("#areaDiv ul li",$(this));
+		    //alert(areaValue);
+			//获取当前选中的分类的值     
+		    var categoryValue=getOptionValue("#categoryDiv ul li");
+		    //alert(categoryValue);
+			//获取当前选中的排序的值
+			var orderValue=getOptionValue("#allProduct ul li");
+			//alert(orderValue);
+			doFindAllProduct(areaValue,categoryValue,orderValue);
+		 });
+		$("#categoryDiv ul li").click(function(){
+		    //获取当前选中的分类的值
+		    var categoryValue =  $(this).find("input").val();
+		    setClassValue("#categoryDiv ul li",$(this));
+			//获取当前选中的地区的值     
+		    var areaValue=getOptionValue("#areaDiv ul li");
+		    //alert(areaValue);
+			//获取当前选中的排序的值
+			var orderValue=getOptionValue("#allProduct ul li");
+			//alert(orderValue)
+			doFindAllProduct(areaValue,categoryValue,orderValue);
+		 });
+		$("#allProduct ul li").click(function(){
+		    //获取当前选中的分类的值
+		    var orderValue =  $(this).find("input").val();
+		    setClassValue("#allProduct ul li",$(this));
+			//获取当前选中的地区的值     
+		    var areaValue=getOptionValue("#areaDiv ul li");
+		    //alert(areaValue);
+			//获取当前选中的排序的值排
+			var categoryValue=getOptionValue("#categoryDiv ul li");
+			//alert(orderValue)
+			doFindAllProduct(areaValue,categoryValue,orderValue);
+		 });
 	});
-	function findByCategory(categoryId) {
-		alert(categoryId);
+	//获得当前选中的li的中<a>的值
+	function getOptionValue(select){
+		var returnValue="";
+	    var selectLi = $(select);
+	    for(var i=0;i<selectLi.length;i++){
+	    	var classValue = $(selectLi[i]).attr("class");
+	    	if(classValue=="active"){
+	    		returnValue = $(selectLi[i]).find("input").val();
+	    	}
+	    }
+	    return returnValue;
+	}
+	//将点击的li设置其class为active
+	function setClassValue(select,selectLi){
+	    var areaLi = $(select);
+	    for(var i=0;i<areaLi.length;i++){
+	    	$(areaLi[i]).removeClass("active");
+	    }
+	    selectLi.addClass("active");
+	}
+	function doFindAllProduct(areaValue,categoryValue,orderValue){
+		var params={
+				"areaValue":areaValue,
+				"categoryValue":categoryValue,
+				"orderValue":orderValue
+		};
+		var url="/product/doFindAllProduct";
+		$("#mainContentId").load(url,params)
 	}
 	
 </script>

@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cy.res.sys.entity.AreaEntity;
 import com.cy.res.sys.entity.CategoryEntity;
-import com.cy.res.sys.entity.ProductEntity;
 import com.cy.res.sys.service.AreaService;
 import com.cy.res.sys.service.CategoryService;
-import com.cy.res.sys.service.ProductService;
 
 import org.springframework.ui.Model;
 
@@ -23,8 +21,6 @@ public class PageController {
 	private CategoryService categoryService;
 	@Autowired
 	private AreaService areaService;
-	@Autowired
-	private ProductService productService;
 	/**返回首页页面*/
 	@RequestMapping("doHomeUI")
 	public String doHomeUI(Model model) {
@@ -34,8 +30,6 @@ public class PageController {
 		//查询所有地区信息并封装到model
 		List<AreaEntity> areaList = areaService.findAllArea();
 		model.addAttribute("areaList", areaList);
-		List<ProductEntity> productList = productService.findAllProduct("");
-		model.addAttribute("productList", productList);
 		return "home";
 	}
 	@RequestMapping("showShopInfo")

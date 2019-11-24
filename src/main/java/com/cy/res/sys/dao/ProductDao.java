@@ -1,11 +1,9 @@
 package com.cy.res.sys.dao;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import com.cy.res.sys.entity.ProductEntity;
 
@@ -16,8 +14,18 @@ import com.cy.res.sys.entity.ProductEntity;
  */
 @Mapper
 public interface ProductDao {
-	@Select("select * from product order by product_core")
-	ProductEntity[] findAllProduct();
+	
+	Integer[] findMemberIdByAreaId(Integer areaId);
+	/**
+	 * 根据条件查询product
+	 * @param areaValue
+	 * @param categoryValue
+	 * @return
+	 */
+	ProductEntity[] findAllProduct(
+			@Param("memberIds") Integer[] memberIds,
+			@Param("categoryId") Integer categoryValue
+			);
 	/**
 	 * 
 	 * product通过id删除商品
