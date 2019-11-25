@@ -1,5 +1,6 @@
 package com.cy.res.sys.service.impl.realm;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.aliyuncs.CommonRequest;
@@ -11,6 +12,7 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.cy.res.sys.utils.getSixNumUtil;
+
 @Service
 public class HxdUserNoteMsg {
 	/**发送短信*/

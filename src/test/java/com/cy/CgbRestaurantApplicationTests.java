@@ -34,10 +34,10 @@ class CgbRestaurantApplicationTests {
 		System.out.println(doFindAllCategory.toString());
 	}
 	@Test
-	public void testProductController() {
-		JsonResult doFindAllProduct = productController.doFindAllProduct("productCurrentPrize");
-		System.out.println(doFindAllProduct.getData().toString());
-	}
+//	public void testProductController() {
+//		JsonResult doFindAllProduct = productController.doFindAllProduct("productCurrentPrize");
+//		System.out.println(doFindAllProduct.getData().toString());
+//	}
 	void contextLoads() {
 		ShopInfo shopInfo = new ShopInfo();
 		shopInfo.setMemberId(3);

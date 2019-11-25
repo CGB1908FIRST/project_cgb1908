@@ -20,9 +20,8 @@ import com.cy.res.sys.service.impl.realm.HxdUserNoteMsg;
 public class HxdUserServiceImpl implements HxdUserService{
 	@Autowired
 	private HxdUserDao hxdUserDao;
-	@Autowired
-	private HxdUserNoteMsg hxdUserNoteMsg; 
-	@Override
+//	@Autowired
+//	private HxdUserNoteMsg hxdUserNoteMsg; 
 	/**
 	 * 注册用户
 	 */

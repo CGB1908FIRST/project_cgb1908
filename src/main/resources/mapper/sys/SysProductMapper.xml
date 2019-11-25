@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.res.sys.dao.ProductDao">
+	<select id="findMemberIdByAreaId" resultType="int">
+		select member_id from member
+		<choose>
+			<when test="memberId != 0">
+				where member_Id = #{memberId} 
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	<select id="findAllProduct"
+		resultType="com.cy.res.sys.entity.ProductEntity">
+		select * from product 
+		<choose>
+			<when test="memberIds.length > 0 and categoryId!=0">
+				where
+				<foreach collection="memberIds" item="memberId" separator="or" open="(" close=")">
+					member_Id=#{memberId}
+				</foreach>
+				and category_Id=#{categoryId}
+			</when>
+			<when test="memberIds.length > 0 and categoryId==0">
+				where
+				<foreach collection="memberIds" item="memberId" separator="or">
+					member_Id=#{memberId}
+				</foreach>
+			</when>
+			<when test="memberIds.length == 0 and categoryId!=0">
+				where category_Id=#{categoryId}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+</mapper>
+
+
+
+
