@@ -1,0 +1,51 @@
+<div class="aa" style="margin-bottom: 16px; margin-left: 20px; margin-right: 18px;">
+	<div class="row cannot_select" style="">
+		<!-- 第三行 -->
+		<table class="order" style="text-align: center; width: 100%;">
+			<tr>
+				<th style="text-align: left;">项目</th>
+				<th class="unit-price">单价</th>
+				<th class="amount">数量</th>
+				<th class="col-total">总价</th>
+			</tr>
+			<tr class="trline" th:each="bc:${buyerCart?.cartItems}">
+				<td style="text-align: left; padding-left: 10px;">
+					[[${bc.product.productName}]]</td>
+				<td>¥<span>[[${bc.product.productCurrentPrize}]]</span></td>
+				<td>[[${bc.buyNum}]]份</td>
+				<td><span class="fonttored">¥[[${bc.subTotal}]]</span>
+				</td>
+			</tr>
+
+			<tr class="trline">
+				<td></td>
+				<td class="extra-fee total-fee rightpadding"
+					style="text-align: right; padding-right: 45px;" colspan="3"><strong>应付金额</strong>
+					： <span class="inline-block money"> <strong
+						class="fonttored" >[[${buyerCart?.price}]]</strong>
+				</span></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td class="extra-fee total-fee rightpadding"
+					style="text-align: right; padding-right: 45px;" colspan="3">
+					<button type="submit" class="btn btn-info" style="width: 150px;"
+						onclick="javascript:payOrder();">支付</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+	function payOrder(){
+		$.post("/order/toPay",function(result){
+			if(result.state == 1){
+				alert("支付成功,返回首页");
+				$.ajax("/doHomeUI");
+			}else{
+				alert(result.message);
+			}
+		});
+	}
+</script>

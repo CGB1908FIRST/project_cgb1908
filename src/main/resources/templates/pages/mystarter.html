@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="theme.css" rel="stylesheet">
+ <link href="theme.css" rel="stylesheet">
 <script src="/jquery/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
 </head>
 <body>
 	<div class="container">
@@ -66,18 +64,18 @@
 						<button class="btn btn-default" type="button" id="shopMessage">
 							<em class="glyphicon glyphicon-align-left"></em> 商店信息
 						</button>
-						<button class="btn btn-default" type="button">
+						<button class="btn btn-default" type="button" id="releaseProduct" >
 							<em class="glyphicon glyphicon-align-center"></em> 发布商品
 						</button>
-						<button class="btn btn-default" type="button">
+						<button class="btn btn-default" type="button" id="productManagerid">
 							<em class="glyphicon glyphicon-align-right"></em> 商品管理
 						</button>
-						<button class="btn btn-default" type="button">
-							<em class="glyphicon glyphicon-align-justify"></em> 订单查询
+						<button class="btn btn-default" type="button" id="showShopOrderId">
+							<em class="glyphicon glyphicon-align-justify" ></em> 订单查询
 						</button>
 					</div>
 				</div>
-				<div class="col-md-4 column" style="margin: 50px 100px px 100px">
+				<div class="col-md-10 column" style="margin: 50px 100px px 100px">
 					<section id="mainContentId" class="content container-fluid">
 						<div class="container" style="margin:50px 100px 150px 100px">
 							<div class="row clearfix">
@@ -105,9 +103,12 @@
 	<script type="text/javascript">
 		$(function() {
 			doLoadUI("showShopInfo", "shopMessage");
+			doLoadUI("releaseProductPage", "releaseProduct");
+			doLoadUI("productManager", "productManagerid");
+			doLoadUI("showShopOrder", "showShopOrderId");
 		});
 
-		function doLoadUI(url, id) {
+		function doLoadUI(url,id) {
 			$("#" + id).click(function() {
 				$("#mainContentId").load(url);
 			})

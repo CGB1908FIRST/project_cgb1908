@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cy.res.common.vo.JsonResult;
+
 import com.cy.res.sys.entity.CommentEntity;
+import com.cy.res.common.vo.PageObject;
 import com.cy.res.sys.entity.FindProductEntity;
 import com.cy.res.sys.entity.ProductEntity;
 import com.cy.res.sys.entity.ShopInfo;
@@ -44,7 +46,6 @@ public class ProductController {
 		model.addAttribute("shop", shop);
 		return "productdetail";
 	}
-	
 	@RequestMapping("doFindAllProduct")
 	public String doFindAllProduct(FindProductEntity findProductEntity,Model model) {
 		List<ProductEntity> productList = productService.findAllProduct(findProductEntity);
@@ -62,4 +63,28 @@ public class ProductController {
 		productService.doDeleteObject(id);
 		return new JsonResult("delete ok");
 	}
+	
+	
+	/**
+	 * 新增商品
+	 */
+	@RequestMapping("doReleaseProcduct")
+	@ResponseBody
+	public JsonResult doreleaseProcduct(ProductEntity entity) {
+		System.out.println(entity);
+		productService.productInsert(entity);
+		return new JsonResult("update ok");
+	}
+	
+	/**
+	 * 分页查询
+	 */
+	@RequestMapping("doFindPageObject")
+	@ResponseBody
+	public JsonResult dofindPageObject(Integer memberId, Integer pageCurrent) {
+		PageObject<ProductEntity> data = productService.findPageObject(memberId, pageCurrent);
+		
+		return new JsonResult(data);
+	}
+	
 }

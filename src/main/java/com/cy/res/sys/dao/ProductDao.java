@@ -18,9 +18,11 @@ import com.cy.res.sys.entity.ProductEntity;
 @Mapper
 public interface ProductDao {
 	
+
 	@Select("select * from product where member_Id=#{memberId}")
 	List<ProductEntity> findProductByMemberId(Integer memberId);
 	
+
 	Integer[] findMemberIdByAreaId(Integer areaId);
 	/**
 	 * 根据条件查询product
@@ -42,8 +44,31 @@ public interface ProductDao {
 	/**
 	 * 添加商品信息
 	 */
+
 	int insert(ProductEntity entity);
 
 	@Select("select * from product where product_Id=#{productId}")
 	ProductEntity findProductById(Integer productId); 
+
+	int insertProduct(ProductEntity entity);
+	
+	/**
+	 * 邹
+	 * 查询总记录数
+	 */
+	int findRowCount(Integer memberId);
+	/**
+	 * 邹
+	 * 查询分页信息
+	 */
+	List<ProductEntity> findPageObject(@Param("pageSize")Integer pageSize,
+									   @Param("startIndex")Integer startIndex,
+									   @Param("memberId") Integer memberId);
+	
+	/**
+	 * 邹
+	 * 更新数据
+	 */
+	int updateProduct(ProductEntity entity);
+
 }

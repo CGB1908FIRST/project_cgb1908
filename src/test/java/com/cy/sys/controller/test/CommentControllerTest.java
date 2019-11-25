@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cy.res.sys.controller.CommentController;
+import com.cy.res.sys.entity.CommentEntity;
 
 
 
-/**这个测试类用来测试CommentControllerTest里面的方法
+/**这个测试类用来测试CommentController里面的方法
  * @author xiezhonghuia
  *
  */
@@ -25,4 +26,24 @@ public class CommentControllerTest {
 		Integer productId=5;
 		commentController.doInsert(commentContent, commentCore, productId);
 	}
+	
+	
+	
+	@Test
+	public void doFindCommentByProductIdTest() {
+		Integer productId=2;
+		commentController.doFindCommentByProductId(productId);	
+	}
+	
+	
+	@Test
+	public void doDeleteCommentTest(){
+		CommentEntity comment =new CommentEntity();
+		comment.setUserId(2);
+		comment.setCommentId(27);
+		commentController.doDeleteComment(comment);
+	}
+	
+	
+	
 }

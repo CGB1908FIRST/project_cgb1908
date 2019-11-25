@@ -1,0 +1,68 @@
+<!-- 购物车 -->
+<div class="cart"
+	style="background-color: #fafafa; border-left: 2px solid #fa9700; border-top: 2px solid #fa9700; border-right: 2px solid #fa9700; border-radius: 4px;">
+	<!-- style="background-color:black; -->
+	<div class="cart-top">
+		<a href="">
+			<h5
+				style="margin-top: 1px; margin-left: 3px; color: white; font-size: 14px;">
+				<img class=""
+					style="margin-top: -30px; margin-left: 5px; margin-right: 10px;"
+					src="images/cart_logo.png">购物车 <span
+					style="float: right; padding-right: 15px; font-size: 12px;">共<span
+					style="margin: 0 3px;" class="productAmount">[[${cart?.amount}]]</span>份，总计 <span
+					style="font-size: 14px; font-weight: 700;" class="productPrice">[[${cart?.price}]]元</span></span>
+			</h5>
+		</a>
+	</div>
+	<div style="padding-left: 5px;" id="cart-content">
+		<div class="cart-tittle" style="background-color: #fafafa;">
+			<span class="fl dishes" style="width: 164px;">菜品<a
+				class="clear-cart" href="javascript:clearCart();">[清空]</a>
+			</span> <span>份数</span> <span
+				style="margin-left: 47px; white-space: nowrap;">价格</span>
+		</div>
+		<div class="cart-content" id="productContent">
+			<ul style="height: auto; overflow: visible; padding-left: 0px;">
+				<li class="clearfix" style="padding-left: 0px;" th:each="ct:${cart?.cartItems}">
+					<div class="fl na clearfix" style="width: 152px;">
+						<div>[[${ct.product.productName}]]</div>
+					</div>
+					<div class="fl modify clearfix">
+						<a class="fl minus" href="javascript:;">-</a><input
+							class="fl txt-count text-center" type="text" maxlength="2" th:value="${ct.buyNum}"><a
+							class="fl plus" href="javascript:;">+</a>
+					</div>
+					<div class="fl pri">
+						<span>[[${ct.product.productCurrentPrize}]]</span>
+					</div>
+				</li>
+			</ul>
+			<div class="total">
+				共<span style="color: #fe4d3d; margin: 0 3px;" class="productAmount">[[${cart?.amount}]]</span>份，总计 <span
+					style="color: #fe4d3d; font-size: 28px; font-weight: 700;" class="productPrice">[[${cart?.price}]]元</span>
+				<span style="float: right; margin-right: 10px; margin-top: 3px;"><button
+						type="button" class="btn btn-info"
+						style="width: 70px; height: 30px;" onclick="javascript:toPay();">下单</button></span>
+			</div>
+		</div>
+	</div>
+	<div class="cart-footer"></div>
+</div>
+<script type="text/javascript">
+	function clearCart(){
+		$("#productContent ul").empty();
+		$(".productAmount").text("");
+		$(".productPrice").text("");
+		$.ajax("/shopping/deleteCart");
+	}
+	function toPay(){
+		var check = $("#productContent ul").children();
+		if(check.length==0){
+			alert("请选择");
+			return;
+		}
+		$("#mainContentId").empty();
+    	$("#selectOptionId").load("/shopping/toPay");	
+	}
+</script>
