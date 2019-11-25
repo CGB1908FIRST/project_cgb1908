@@ -39,6 +39,4 @@ public interface ProductDao {
 	 */
 	int insertProduct(ProductEntity entity); 
 	
-	@Select("select * from product order by product_core")
-	ProductEntity[] findAllProduct();
 }

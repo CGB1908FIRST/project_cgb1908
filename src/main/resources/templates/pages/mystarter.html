@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="theme.css" rel="stylesheet">
+ <link href="theme.css" rel="stylesheet">
 <script src="/jquery/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
 </head>
 <body>
 	<div class="container">
@@ -72,8 +70,8 @@
 						<button class="btn btn-default" type="button" id="productManagerid">
 							<em class="glyphicon glyphicon-align-right"></em> 商品管理
 						</button>
-						<button class="btn btn-default" type="button">
-							<em class="glyphicon glyphicon-align-justify"></em> 订单查询
+						<button class="btn btn-default" type="button" id="showShopOrderId">
+							<em class="glyphicon glyphicon-align-justify" ></em> 订单查询
 						</button>
 					</div>
 				</div>
@@ -107,9 +105,10 @@
 			doLoadUI("showShopInfo", "shopMessage");
 			doLoadUI("releaseProductPage", "releaseProduct");
 			doLoadUI("productManager", "productManagerid");
+			doLoadUI("showShopOrder", "showShopOrderId");
 		});
 
-		function doLoadUI(url, id) {
+		function doLoadUI(url,id) {
 			$("#" + id).click(function() {
 				$("#mainContentId").load(url);
 			})
