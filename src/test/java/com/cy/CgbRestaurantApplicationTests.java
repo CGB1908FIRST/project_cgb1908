@@ -1,19 +1,18 @@
 package com.cy;
 
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import com.cy.res.common.vo.JsonResult;
 import com.cy.res.sys.controller.CategoryController;
 import com.cy.res.sys.controller.ProductController;
-import com.cy.res.sys.dao.ShopDao;
-import com.cy.res.sys.entity.ShopInfo;
-
-
 import com.cy.res.sys.dao.HxdUserDao;
+import com.cy.res.sys.dao.ShopDao;
 import com.cy.res.sys.entity.HxdUser;
+import com.cy.res.sys.entity.ShopInfo;
 import com.cy.res.sys.service.HxdUserService;
+
 
 @SpringBootTest
 class CgbRestaurantApplicationTests {

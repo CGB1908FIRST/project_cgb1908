@@ -1,6 +1,12 @@
 package com.cy.res.sys.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.cy.res.commom.vo.ServiceException;
+import com.cy.res.sys.entity.CommentEntity;
+
 
 /**
  * Comment的业务层接口
@@ -22,5 +28,26 @@ public interface CommentService {
 	 * @throws Exception 
 	 */
 	public int insert(String commentContent,Double  commentCore,
-			Integer productId,Integer userId) throws Exception;
+			Integer productId,Integer userId) throws ServiceException;
+	
+	/**用户根据商品id查询商品评价,返回值为一组评论
+	 * @author xiezhonghuai
+	 *@param  Integer ProductId 商品id
+	 *@return List<CommentEntity>  返回一个评价集合
+	 * @throws Exception 
+	 */
+	public List<CommentEntity> findCommentByProductId(Integer productId) throws ServiceException;
+
+	
+
+
+	/**用户根据用户id，以及评论commentId删除评论
+	 * @author xiezhonghuai
+	 *@param  Integer userId 用户id
+	 *@param CommentEntity comment 页面对象
+	 */
+	public int deleteComment(Integer userId,CommentEntity comment);
+
+	
+	
 }
