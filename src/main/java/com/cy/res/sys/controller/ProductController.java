@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cy.res.common.vo.JsonResult;
+import com.cy.res.common.vo.PageObject;
 import com.cy.res.sys.entity.FindProductEntity;
 import com.cy.res.sys.entity.ProductEntity;
 import com.cy.res.sys.service.ProductService;
@@ -49,9 +50,22 @@ public class ProductController {
 	 * 新增商品
 	 */
 	@RequestMapping("doReleaseProcduct")
+	@ResponseBody
 	public JsonResult doreleaseProcduct(ProductEntity entity) {
 		System.out.println(entity);
 		productService.productInsert(entity);
 		return new JsonResult("update ok");
 	}
+	
+	/**
+	 * 分页查询
+	 */
+	@RequestMapping("doFindPageObject")
+	@ResponseBody
+	public JsonResult dofindPageObject(Integer memberId, Integer pageCurrent) {
+		PageObject<ProductEntity> data = productService.findPageObject(memberId, pageCurrent);
+		
+		return new JsonResult(data);
+	}
+	
 }

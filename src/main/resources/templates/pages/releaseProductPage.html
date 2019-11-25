@@ -2,10 +2,9 @@
 	<div style="margin: 50px 0px 0px 200px">
 		<form name="addProductForm">
 			<div class="form-group">
-				<label for="productname">商品名称：</label>
-				 <input type="input"
+				<label for="productname">商品名称：</label> <input type="input"
 					class="form-control" id="productnameid"
-					ng-model="product.productName"/>
+					ng-model="product.productName" />
 			</div>
 			<div class="form-group">
 				<label for="producttittle">商品副标题</label> <input type="text"
@@ -15,7 +14,7 @@
 			<div class="form-group">
 				<label for="producttittle">商品类别：</label> <select
 					name="productCategory" id="categoryProductId">
-					<option value="${c.categoryId}" th:each="c:${categoryList}">[[${c.categoryName}]]</option>
+					<option th:each="c:${categoryList}" th:value="${c.categoryId}" >[[${c.categoryName}]]</option>
 				</select>
 			</div>
 			<div class="form-group" style="display: inline-block; width: 120px;">
@@ -43,30 +42,27 @@
 		$("#commitProduct").click(saveProductMessage);
 	});
 	function saveProductMessage() {
-		debugger;
-		var params = 123;
-		alert(params);
-	 /* 	 var p = {
-				 "productName":${"#productnameid"}.val(), 
-				 "productSubtitle":${"#producttittle"}.val,
-				 "categoryId":${"categoryProductId"}.val(), 
-				"productOriginalPrize":${"#producoldprice"}.val(),
-				"productCurrentPrize":${"#productnewprice"}.val(),
-				"productImgUrl":$("#exampleInputFile").val() 
-			}; */
-		//var url = "product/doReleaseProcduct";
-		//var params = doGetParams();
-		//console.log(params);
-		/* $.post(url,params,saveProduct);  */
+		var params = {
+			"productName" : $("#productnameid").val(),
+			"productSubtitle" : $("#producttittle").val(),
+			"categoryId" : $("#categoryProductId").val(),
+			"productOriginalPrize" : $("#producoldprice").val(),
+			"productCurrentPrize" : $("#productnewprice").val(),
+			"productImgUrl" : $("#exampleInputFile").val()
+		};
+		
+		var url = "product/doReleaseProcduct";
+		//debugger
+		console.log(params)
+		$.post(url,params,saveProduct);
 	}
-/* 	 function saveProduct(result){
-		console.log(result);
-		if(result.state==1){
-			alert(result.data.message);
-		}else{
-			alert(result.data.message)
+	function saveProduct(result) {
+		if (result.state == 1) {
+			alert(result.message);
+		} else {
+			alert(result.message)
 		}
-	} */
+	}
 	/* function doGetParams(){
 		var params = {
 			"productName":${"#productnameid"}.val(),
@@ -78,5 +74,4 @@
 		};
 		return params;
 	}   */
-	
 </script>

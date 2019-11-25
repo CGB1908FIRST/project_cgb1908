@@ -1,6 +1,8 @@
 package com.cy.res.sys.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -37,6 +39,24 @@ public interface ProductDao {
 	/**
 	 * 添加商品信息
 	 */
-	int insertProduct(ProductEntity entity); 
+	int insertProduct(ProductEntity entity);
 	
+	/**
+	 * 邹
+	 * 查询总记录数
+	 */
+	int findRowCount(Integer memberId);
+	/**
+	 * 邹
+	 * 查询分页信息
+	 */
+	List<ProductEntity> findPageObject(@Param("pageSize")Integer pageSize,
+									   @Param("startIndex")Integer startIndex,
+									   @Param("memberId") Integer memberId);
+	
+	/**
+	 * 邹
+	 * 更新数据
+	 */
+	int updateProduct(ProductEntity entity);
 }
