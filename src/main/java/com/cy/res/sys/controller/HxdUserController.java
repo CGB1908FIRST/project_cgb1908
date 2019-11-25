@@ -10,6 +10,7 @@ import com.cy.res.sys.vo.JsonResult;
 
 @RestController
 @RequestMapping("/user/")
+
 public class HxdUserController {
 	@Autowired
 	private HxdUserService hxdUserService;
@@ -17,11 +18,5 @@ public class HxdUserController {
 	public JsonResult regist(HxdUser userData) {
 		hxdUserService.insertObject(userData);
 		return new JsonResult("恭喜,注册成功");
-	}
-	@RequestMapping("dologin")
-	public JsonResult doLogin(String username,String password,Boolean isRemenberMe) {
-		hxdUserService.isLogin(username, password,isRemenberMe);
-		System.out.println("HxdUserController.doLogin()");
-		return new JsonResult("登陆成功!");
 	}
 }

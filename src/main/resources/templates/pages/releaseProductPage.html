@@ -1,0 +1,80 @@
+<div>
+	<div style="margin: 50px 0px 0px 200px">
+		<form name="addProductForm">
+			<div class="form-group">
+				<label for="productname">商品名称：</label>
+				 <input type="input"
+					class="form-control" id="productnameid"
+					ng-model="product.productName"/>
+			</div>
+			<div class="form-group">
+				<label for="producttittle">商品副标题</label> <input type="text"
+					class="form-control" id="producttittle"
+					ng-model="product.productSubtitle">
+			</div>
+			<div class="form-group">
+				<label for="producttittle">商品类别：</label> <select
+					name="productCategory" id="categoryProductId">
+					<option value="${c.categoryId}" th:each="c:${categoryList}">[[${c.categoryName}]]</option>
+				</select>
+			</div>
+			<div class="form-group" style="display: inline-block; width: 120px;">
+				<label for="producoldprice">商品原价</label> <input type="number"
+					class="form-control" id="producoldprice"
+					ng-model="product.productOriginalPrize">
+			</div>
+			<div class="form-group" style="display: inline-block; width: 120px;">
+				<label for="productnewprice">商品现价</label> <input type="number"
+					class="form-control" id="productnewprice"
+					ng-model="product.productCurrentPrize">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputFile">上传商品图片</label> <input type="file"
+					id="exampleInputFile" ng-model="file" name="file">
+				<p class="help-block">支持JPG，JPEG，GIF，PNG, 且小于5M</p>
+			</div>
+			<button type="submit" class="btn btn-default" id="commitProduct">发布</button>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$("#commitProduct").click(saveProductMessage);
+	});
+	function saveProductMessage() {
+		debugger;
+		alert(123);
+	 	//var params = {
+				//"productName":${"#productnameid"}.val()
+				/* "productSubtitle":${"#producttittle"}.val,
+				 "categoryId":${"categoryProductId"}.val(), 
+				"productOriginalPrize":${"#producoldprice"}.val(),
+				"productCurrentPrize":${"#productnewprice"}.val(),
+				"productImgUrl":$("#exampleInputFile").val() */
+			//};  
+		//var url = "product/doReleaseProcduct";
+		//var params = doGetParams();
+		//console.log(params);
+		/* $.post(url,params,saveProduct);  */
+	}
+/* 	 function saveProduct(result){
+		console.log(result);
+		if(result.state==1){
+			alert(result.data.message);
+		}else{
+			alert(result.data.message)
+		}
+	} */
+	/* function doGetParams(){
+		var params = {
+			"productName":${"#productnameid"}.val(),
+			"productSubtitle":${"#producttittle"}.val,
+			"categoryId":${"categoryProductId"}.val(),
+			"productOriginalPrize":${"#producoldprice"}.val(),
+			"productCurrentPrize":${"#productnewprice"}.val(),
+			"productImgUrl":$("#exampleInputFile").val()
+		};
+		return params;
+	}   */
+	
+</script>

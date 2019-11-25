@@ -66,10 +66,10 @@
 						<button class="btn btn-default" type="button" id="shopMessage">
 							<em class="glyphicon glyphicon-align-left"></em> 商店信息
 						</button>
-						<button class="btn btn-default" type="button">
+						<button class="btn btn-default" type="button" id="releaseProduct" >
 							<em class="glyphicon glyphicon-align-center"></em> 发布商品
 						</button>
-						<button class="btn btn-default" type="button">
+						<button class="btn btn-default" type="button" id="productManagerid">
 							<em class="glyphicon glyphicon-align-right"></em> 商品管理
 						</button>
 						<button class="btn btn-default" type="button">
@@ -77,7 +77,7 @@
 						</button>
 					</div>
 				</div>
-				<div class="col-md-4 column" style="margin: 50px 100px px 100px">
+				<div class="col-md-10 column" style="margin: 50px 100px px 100px">
 					<section id="mainContentId" class="content container-fluid">
 						<div class="container" style="margin:50px 100px 150px 100px">
 							<div class="row clearfix">
@@ -105,6 +105,8 @@
 	<script type="text/javascript">
 		$(function() {
 			doLoadUI("showShopInfo", "shopMessage");
+			doLoadUI("releaseProductPage", "releaseProduct");
+			doLoadUI("productManager", "productManagerid");
 		});
 
 		function doLoadUI(url, id) {
