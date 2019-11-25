@@ -12,6 +12,10 @@ import com.cy.res.sys.entity.ProductEntity;
  */
 public interface ProductService {
 	
+	
+	ProductEntity findProductById(Integer productId);
+	
+	List<ProductEntity> findProductByMemberId(Integer memberId);
 	/**
 	 * 查询所有product
 	 * @return

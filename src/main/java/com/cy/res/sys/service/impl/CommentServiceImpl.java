@@ -1,5 +1,7 @@
 package com.cy.res.sys.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,13 @@ public class CommentServiceImpl implements CommentService {
 			throw new Exception("添加评论失败！");
 		}
 		return row;
+	}
+
+
+	@Override
+	public List<CommentEntity> findCommentByProductId(Integer productId) {
+		
+		return commentDao.findCommentByProductId(productId);
 	}
 
 }

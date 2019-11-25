@@ -1,5 +1,7 @@
 package com.cy.res.sys.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.cy.res.sys.entity.CommentEntity;
@@ -14,5 +16,7 @@ import com.cy.res.sys.entity.CommentEntity;
 public interface CommentDao {
 
 	public int insert(CommentEntity comment);
+	
+	public List<CommentEntity> findCommentByProductId(Integer productId);
 	
 }

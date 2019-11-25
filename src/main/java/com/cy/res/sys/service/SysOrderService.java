@@ -1,5 +1,6 @@
 package com.cy.res.sys.service;
 
+import javax.servlet.http.HttpServletRequest;
 import com.cy.res.sys.entity.SysOrder;
 
 public interface SysOrderService {
@@ -9,4 +10,6 @@ public interface SysOrderService {
 	 * @return
 	 */
 	SysOrder selectObjectByUserId(Integer id);
+	
+	void paySuccessInsert(HttpServletRequest request);
 }

@@ -54,3 +54,129 @@
 .sell-prize {
 	font-size: 21px;
 }
+.cart {
+	bottom: 0;
+    font-size: 14px;
+    left: 50%;
+    margin-left: 265px;
+    position: fixed;
+    width: 290px;
+    z-index: 100;
+}
+.cart-title {
+    background-color: #fafafa;
+    border-top: 4px solid #6b450a;
+    color: #898989;
+    font-size: 12px;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 8px;
+    padding-right: 19px;
+}
+
+.cart .na {
+    margin: 16px 0 14px;
+    width: 145px;
+}
+.cart .modify a {
+    border: 1px solid #e5e5e5;
+    color: #bfbfbf;
+    display: inline-block;
+    font-weight: 700;
+    height: 18px;
+    letter-spacing: 0;
+    text-align: center;
+    width: 18px;
+}
+.clearfix::after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+}
+.cart ul li {
+    border-bottom: 1px solid #e5e5e5;
+    padding-left: 15px;
+    list-style-type: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding-left: 15px;
+}
+.cart .modify {
+    font-size: 12px;
+    padding-top: 16px;
+}
+.cart .modify input {
+   
+    display: inline-block;
+    height: 18px;
+    line-height: 16px;
+    padding: 0 0px;
+    text-align: center;
+    width: 18px;
+    border: 1px solid #c6c6c6;
+}
+.cart .pri {
+    line-height: 49px;
+    text-align: right;
+    width: 65px;
+}
+.cart-top {
+	color:white;
+	background-color: #fa9700;
+	height:25px;
+	padding-top: 1px;
+	margin-bottom: 5px;
+}
+.clearfix::after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+}
+.fl {
+    float: left;
+}
+.cart .na {
+    margin: 16px 0 14px;
+    width: 145px;
+}
+.cart .modify a {
+    border: 1px solid #e5e5e5;
+    color: #bfbfbf;
+    display: inline-block;
+    font-weight: 700;
+    height: 18px;
+    letter-spacing: 0;
+    text-align: center;
+    width: 18px;
+}
+.cannot_select{
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -khtml-user-select:none;
+  user-select:none;
+}
+.trline {
+	border-bottom: 1px dotted #e5e5e5;
+}
+.fonttored{
+	color: #f76120;
+}
+.btn-info {
+    background-image: linear-gradient(to bottom, #fa9700 0px, #f69500 100%);
+    background-repeat: repeat-x;
+    border-color: #fa9700;
+    background-color: #fa9700;
+    border-color: #ec8f00;
+    color: #fff;    
+}
+.btn-info:hover {
+	background-color: #fa9700;
+	 border-color: #ec8f00;
+}
+ .btn-info[disabled] {
+    border-color:#fa9700;
+}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cy.res.sys.entity.FindProductEntity;
 import com.cy.res.sys.entity.ProductEntity;
 import com.cy.res.sys.entity.ShopInfo;
+import com.cy.res.sys.service.ProductService;
 import com.cy.res.sys.service.ShopInfoService;
 import com.cy.res.sys.vo.JsonResult;
 
@@ -19,6 +20,8 @@ import com.cy.res.sys.vo.JsonResult;
 public class ShopInfoController {
 	@Autowired
 	ShopInfoService shopInfoService;
+	@Autowired
+	ProductService productService;
 	
 	@RequestMapping("doFindAllProduct")
 	public String doFindAllProduct(Model model) {
@@ -29,8 +32,10 @@ public class ShopInfoController {
 	@RequestMapping("findShopInfoString")
 	public String findShopInfoString(Integer memberId,Model model) {
 		List<ShopInfo> shopData = shopInfoService.findShopInfoByMemberId(memberId);
+		List<ProductEntity> productList = productService.findProductByMemberId(memberId);
 		model.addAttribute("shopData",shopData);  
-		return "";
+		model.addAttribute("productList",productList);  
+		return "shopcart";
 	}
 	@RequestMapping("findShopInfo")
 	@ResponseBody

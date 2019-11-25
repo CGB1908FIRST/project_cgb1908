@@ -84,5 +84,13 @@ public class ProductServiceImpl implements ProductService {
 		return 0;
 
 	}
+	@Override
+	public List<ProductEntity> findProductByMemberId(Integer memberId) {
+		return productDao.findProductByMemberId(memberId);
+	}
+	@Override
+	public ProductEntity findProductById(Integer productId) {
+		return productDao.findProductById(productId);
+	}
 }
 

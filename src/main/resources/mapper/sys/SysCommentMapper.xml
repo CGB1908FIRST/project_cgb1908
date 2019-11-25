@@ -10,7 +10,9 @@
 		#{commentContent},#{commentCore},#{productId},#{userId},
 		#{createdTime},#{modifiedTime},#{createdUser},#{modifiedUser});
 	</insert>
-
+	<select id="findCommentByProductId" resultType="com.cy.res.sys.dao.CommentDao">\
+		select * from comment where productId=#{productId}
+	</select>
 </mapper>
 
 

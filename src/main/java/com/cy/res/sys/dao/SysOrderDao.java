@@ -1,13 +1,12 @@
 package com.cy.res.sys.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.cy.res.sys.entity.SysOrder;
 @Mapper
 public interface SysOrderDao {
+	
+	int paySuccessInsert(SysOrder order);
 	/**
 	 * 查询根据用户Id查询订单
 	 * @param id

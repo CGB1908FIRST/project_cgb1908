@@ -1,6 +1,10 @@
 package com.cy.res.sys.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.cy.res.sys.entity.CommentEntity;
 
 /**
  * Comment的业务层接口
@@ -10,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CommentService {
 	
-	
+	public List<CommentEntity> findCommentByProductId(Integer productId);
 	/**
 	 * 用户基于用户ID和商品ID对商品添加评价的方法
 	 * @author xiezhonghuai
