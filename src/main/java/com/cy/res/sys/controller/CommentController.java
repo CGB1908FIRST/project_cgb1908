@@ -1,9 +1,12 @@
 package com.cy.res.sys.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cy.res.sys.entity.CommentEntity;
 import com.cy.res.sys.service.CommentService;
 import com.cy.res.sys.vo.JsonResult;
 
@@ -33,7 +36,25 @@ public class CommentController {
 		return new JsonResult("恭喜！成功添加评论！");
 		
 		//url:locahost:8080/comment/doInsert
-		
 	}
 	
+	/**这是一个处理用户根据商品id查看商品评论的方法，
+	 * @author xiezhonghuai
+	 */
+	@RequestMapping("doFindComments")
+	public JsonResult doFindCommentByProductId(Integer productId) {
+		//从页面中中获取商品id productId
+				 productId =3;
+		List<CommentEntity> lsitComment = commentService.findCommentByProductId(productId);
+		return new JsonResult(lsitComment);
+		//http://localhost/comment/doFindComments?productId=5
+	}
+	
+
+	public JsonResult doDeleteComment(CommentEntity comment) {
+		//从sesion中获取用户id
+		Integer userId=6;
+		commentService.deleteComment(userId, comment);
+		return new JsonResult("恭喜！成功删除！");
+	}
 }

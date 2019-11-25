@@ -33,4 +33,13 @@ public class PageController {
 	public String doInsert() {
 		return "doInsert";
 	}
+	@RequestMapping("doFindComments")
+	public String doFindCommentByProductId(Integer productId) {
+		return "doFindComments"; //
+	}
+	@RequestMapping("demo")
+	public String dome() {
+		return "demo"; //
+	}
+	
 }

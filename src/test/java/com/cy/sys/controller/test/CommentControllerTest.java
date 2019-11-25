@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cy.res.sys.controller.CommentController;
+import com.cy.res.sys.entity.CommentEntity;
 
 
 
@@ -25,4 +26,24 @@ public class CommentControllerTest {
 		Integer productId=5;
 		commentController.doInsert(commentContent, commentCore, productId);
 	}
+	
+	
+	
+	@Test
+	public void doFindCommentByProductIdTest() {
+		Integer productId=2;
+		commentController.doFindCommentByProductId(productId);	
+	}
+	
+	
+	@Test
+	public void doDeleteCommentTest(){
+		CommentEntity comment =new CommentEntity();
+		comment.setUserId(2);
+		comment.setCommentId(27);
+		commentController.doDeleteComment(comment);
+	}
+	
+	
+	
 }
