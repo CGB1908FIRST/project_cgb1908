@@ -20,8 +20,8 @@ import com.cy.res.sys.service.impl.realm.HxdUserNoteMsg;
 public class HxdUserServiceImpl implements HxdUserService{
 	@Autowired
 	private HxdUserDao hxdUserDao;
-//	@Autowired
-//	private HxdUserNoteMsg hxdUserNoteMsg; 
+	@Autowired
+	private HxdUserNoteMsg hxdUserNoteMsg; 
 	/**
 	 * 注册用户
 	 */
@@ -29,8 +29,6 @@ public class HxdUserServiceImpl implements HxdUserService{
 		//验证数据
 		if(userData==null)
 			throw new ServiceException("user数据空的");
-//		if(StringUtils.isEmpty(userData.getUserNickName()))
-//			throw new ServiceException("昵称啊,(>﹏<)");
 		if(StringUtils.isEmpty(userData.getUserPhone()))
 			throw new ServiceException("大人，手机号还没填呢(>﹏<)");
 		if(StringUtils.isEmpty(userData.getUserLoginName()))
@@ -46,8 +44,8 @@ public class HxdUserServiceImpl implements HxdUserService{
 			throw new ServiceException("验证码有误，注册失败了(>﹏<)");
 		
 		//UserNode noteData =(UserNode) request.getAttribute("nodeData");
-//		if(userData.getCode()==note.getSixNum())
-//			throw new ServiceException("验证码有误，注册失败了(>﹏<)");
+		//if(userData.getCode()==note.getSixNum())
+			//throw new ServiceException("验证码有误，注册失败了(>﹏<)");
 		String password = userData.getUserPassword();//获取密码
 		String salt=UUID.randomUUID().toString();//获取盐值
 		SimpleHash sh=new SimpleHash(//Shiro框架

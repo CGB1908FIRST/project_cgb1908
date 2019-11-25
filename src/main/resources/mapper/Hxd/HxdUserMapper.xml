@@ -13,8 +13,7 @@
 	</insert>
 
 	<select id="findOnebyLoginName" resultType="int">
-		select count(*) from user where user_login_name =
-		(#{userLoginName})
+		select count(*) from user where user_login_name = #{userLoginName}
 	</select>
 
 	<select id="findOne" resultType="com.cy.res.sys.entity.HxdUser"> 

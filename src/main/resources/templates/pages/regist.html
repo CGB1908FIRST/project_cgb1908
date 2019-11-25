@@ -2,13 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="static/timg.jpg" type="image/x-icon">
 <title>Insert title here</title>
+
 <style>
 * {
 	border: none;
 	text-decoration: none;
 }
-
+body {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .regist {
 	width: 536px;
 	height: 476px;
@@ -35,6 +44,7 @@
 	border-radius: 4px;
 	border: 1px #aaa solid;
 	font-size: 24px;
+	margin-bottom: 75px;
 }
 
 .title_top {
@@ -184,6 +194,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#username").blur(isExist);
+		$("#username").focus(isExist);
 		$("#repassword").blur(isDifference);
 		$("#setup").click(doregist);
 		$(".send").click(domsg);
@@ -202,16 +213,20 @@
 		}
 	}
 	function isExist(){
+		//debugger
 		var nn = $("#username").val();
+		if(nn==""){
+			return
+		}
 		const url = "/user/userIsExist";
 		var data = {
 				"username" : nn
 				}
 		$.post(url,data,function(result){
-			console.log(result);
-			if (result.message != "1") {
+			//console.log(result);
+			if (result.state != 1) {
 				$("#hint_name").css("display","inline-block");
-			}else if(result.message == "1"){
+			}else if(result.state == 0){
 				$("#hint_name").css("display","none");
 			}
 		})

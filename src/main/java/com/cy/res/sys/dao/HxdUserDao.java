@@ -11,7 +11,7 @@ public interface HxdUserDao {
 	int insertObject(HxdUser userData);
 	
 	/**用户注册时判断登录名称是否存在*/
-	int findOnebyLoginName(String loginName);
+	int findOnebyLoginName(String userLoginName);
 	
 	/**用户登录判查找用户记录*/
 	HxdUser findOne(String username);
