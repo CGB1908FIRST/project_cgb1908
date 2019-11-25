@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,12 +12,6 @@ import com.cy.res.sys.entity.AreaEntity;
 import com.cy.res.sys.entity.CategoryEntity;
 import com.cy.res.sys.service.AreaService;
 import com.cy.res.sys.service.CategoryService;
-
-=======
->>>>>>> branch 'master' of https://github.com/CGB1908FIRST/project_cgb1908.git
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
@@ -53,16 +47,11 @@ public class PageController {
 	public String doModuleUI(@PathVariable String moduleUI) {
 		return moduleUI;
 	}
-<<<<<<< HEAD
 	@RequestMapping("releaseProductPage")
 	public String releaseProductPage(Model model) {
 		List<CategoryEntity> categoryList = categoryService.findAllCategory();
 		model.addAttribute("categoryList",categoryList);
 		return "releaseProductPage";
-=======
-	@RequestMapping("{moduleUI}")
-	public String doModuleUI(@PathVariable String moduleUI) {
-		return  moduleUI;
 	}
 	@RequestMapping("doInsert")
 	public String doInsert() {
@@ -75,7 +64,6 @@ public class PageController {
 	@RequestMapping("demo")
 	public String dome() {
 		return "demo"; //
->>>>>>> branch 'master' of https://github.com/CGB1908FIRST/project_cgb1908.git
 	}
 	
 }

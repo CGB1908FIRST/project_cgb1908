@@ -4,6 +4,7 @@ package com.cy.res.sys.dao;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.cy.res.sys.entity.ProductEntity;
 
