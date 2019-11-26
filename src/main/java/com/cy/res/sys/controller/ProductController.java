@@ -38,10 +38,11 @@ public class ProductController {
 	public String gotoDetail(Integer productId,Model model) {
 		ProductEntity product = productService.findProductById(productId);
 		List<CommentEntity> commentList = commentService.findCommentByProductId(productId);
-		ShopInfo shop = ShopInfoService.findShopInfoByProductId(productId);
+		int memberId = product.getMemberId();
+		List<ShopInfo> shop = ShopInfoService.findShopInfoByMemberId(memberId);
 		model.addAttribute("product", product);
 		model.addAttribute("commentList", commentList);
-		model.addAttribute("shop", shop);
+		model.addAttribute("shop", shop.get(0));
 		return "productdetail";
 	}
 	@RequestMapping("doFindAllProduct")

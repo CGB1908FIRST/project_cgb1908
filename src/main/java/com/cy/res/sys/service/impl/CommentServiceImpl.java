@@ -68,7 +68,7 @@ public class CommentServiceImpl implements CommentService {
 		if(listCommentEntity==null || listCommentEntity.size()==0) {
 		// ???? 此处 listCommentEntity.isEmpty() 与 listCommentEntity.size()==0 的区别   ==========> ????
 			System.out.println("listCommentEntity:"+listCommentEntity);
-			 throw new ServiceException("该商品没有评价，快来添加您的评价吧！！！");
+			 //throw new ServiceException("该商品没有评价，快来添加您的评价吧！！！");
 		}
 			
 		//2.1,返回结果

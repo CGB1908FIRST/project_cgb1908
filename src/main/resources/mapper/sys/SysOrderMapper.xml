@@ -6,10 +6,10 @@
 		resultType="com.cy.res.sys.entity.SysOrder">
 		select productId from rorder where userId=#{Id}
 	</select>
-	<insert id="paySuccessInsert">
-		insert into rorder values(null,order_num=#{orderNum},order_price=#{orderPrice},
-			order_is_comment=#{orderIsComment},order_date=now(),product_id=#{productId},
-			product_name=#{productName},product_price=#{productPrice},product_count=#{productCount},
-			member_id=#{memberId},user_id=#{userId},null,null,null,null)
+	<insert id="paySuccessInsert" parameterType="com.cy.res.sys.entity.SysOrder">
+		insert into rorder values(null,#{orderNum},#{orderPrice},
+		#{orderIsComment},now(),#{productId},
+		#{productName},#{productPrice},#{productCount},
+		#{memberId},#{userId},null,null,null,null)
 	</insert>
 </mapper>

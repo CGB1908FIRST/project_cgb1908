@@ -16,7 +16,7 @@
 
 				<li th:each="s:${shopList}" th:onclick="showShopInfo([[${s.memberId}]]);"><a href="#">
 					<div>
-						<img src="${s.shopImgUrl}" style="width: 180px; height: 130px"class="img-rounded"/>
+						<img th:src="${s.shopImgUrl}" style="width: 180px; height: 130px"class="img-rounded"/>
 							<span>
 								<dl>
 									<dt>[[${s.shopName}]]</dt>

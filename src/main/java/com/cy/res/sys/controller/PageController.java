@@ -46,6 +46,7 @@ public class PageController {
 	}
 	@RequestMapping("{moduleUI}")
 	public String doModuleUI(@PathVariable String moduleUI) {
+		System.out.println(moduleUI);
 		return moduleUI;
 	}
 	@RequestMapping("releaseProductPage")
