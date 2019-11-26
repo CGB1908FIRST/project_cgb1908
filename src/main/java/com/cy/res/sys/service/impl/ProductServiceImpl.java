@@ -117,13 +117,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductEntity findProductById(Integer productId) {
 		// TODO Auto-generated method stub
-		return null;
+		return productDao.findProductById(productId);
 	}
 
 	@Override
 	public List<ProductEntity> findProductByMemberId(Integer memberId) {
 		// TODO Auto-generated method stub
-		return null;
+		return productDao.findProductByMemberId(memberId);
 	}
 
 }

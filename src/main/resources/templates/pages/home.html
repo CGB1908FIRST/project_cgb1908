@@ -58,7 +58,7 @@
 							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;" th:onclick="login();">
 							登录</button>
 						<button type="button" class="btn btn-default btn-sm"
-							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;">
+							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;" th:onclick="regist();">
 							注册</button>
 					</div>
 				</nav>
@@ -131,6 +131,9 @@
 	function login(){
 		//alert("easda");
 		window.location.assign("dologin");
+	}
+	function regist(){
+		window.location.assign("regist");
 	}
 </script>
 </html>
