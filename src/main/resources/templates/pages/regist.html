@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="static/timg.jpg" type="image/x-icon">
+<link  rel="icon" href="/shopImg/favicon1.ico">
 <title>Insert title here</title>
 
 <style>
@@ -268,6 +268,7 @@ body {
 		$.post(url,data,function(result){
 			if (result.state == 1) {
 				alert("注册成功");
+				window.location.assign("login");
 			} else {
 				alert(result.message);
 			}

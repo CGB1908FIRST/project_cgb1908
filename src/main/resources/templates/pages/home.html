@@ -23,6 +23,9 @@
 	text-shadow: rgb(0, 255, 0) 3px 3px 3px;
 	font-size: 20px;
 }
+.logout{
+	color:#fff;
+}
 </style>
 </head>
 <body> 
@@ -60,6 +63,7 @@
 						<button type="button" class="btn btn-default btn-sm"
 							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;" th:onclick="regist();">
 							注册</button>
+						<span class="logout" id="logout">注销</span>
 					</div>
 				</nav>
 				<div class="content-wrapper">
@@ -79,6 +83,9 @@
 </body>
 <script type="text/javascript">
 	$(function() {
+		$("#logout").click(function(){
+			window.location.assign("/dologin");
+		});
 		//doFindAllProduct(0,0,"default");
 		$("#bs-example-navbar-collapse-1 ul li").click(function(){
 		    //获取当前选中的地区的值

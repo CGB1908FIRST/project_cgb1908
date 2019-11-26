@@ -16,23 +16,25 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringShiroConfig {
+	//安全管理器
+		@Bean
+		public SecurityManager securityManager(Realm realm,
+				CookieRememberMeManager rememberManager,
+				SessionManager sessionManager) {
+			DefaultWebSecurityManager sManager=new DefaultWebSecurityManager();
+			sManager.setRealm(realm);
+			sManager.setRememberMeManager(rememberManager);
+			sManager.setSessionManager(sessionManager);
+			return sManager;
+		}
+	//SessionManager
 	@Bean   
 	public SessionManager sessionManager() {
 		 DefaultWebSessionManager sManager=new DefaultWebSessionManager();
 		 sManager.setGlobalSessionTimeout(60*60*1000);
 		 return sManager;
     }
-	//安全管理器
-	@Bean
-	public SecurityManager securityManager(Realm realm,
-			CookieRememberMeManager rememberManager,
-			SessionManager sessionManager) {
-		DefaultWebSecurityManager sManager=new DefaultWebSecurityManager();
-		sManager.setRealm(realm);
-		sManager.setRememberMeManager(rememberManager);
-		sManager.setSessionManager(sessionManager);
-		return sManager;
-	}
+	
 	
 	@Bean
 	public ShiroFilterFactoryBean shiroFilterFactory (SecurityManager securityManager) {
@@ -50,16 +52,17 @@ public class SpringShiroConfig {
 		map.put("/regist/**","anon");
 		map.put("/user/**","anon");
 		map.put("/msg/send","anon");
-		map.put("/doHomeUI/**","anon");
+		map.put("/doHomeUI/**","user");
 		//除了匿名访问的资源,其它都要认证("authc")后访问
+		map.put("/dologin","logout");
 		map.put("/**","user");//authc
 		sfBean.setFilterChainDefinitionMap(map);
 		return sfBean;
 	}
+	//CookieRememberMeManager
 	@Bean
 	public CookieRememberMeManager rememberMeManager() {
-		CookieRememberMeManager cManager=
-				new CookieRememberMeManager();
+		CookieRememberMeManager cManager=new CookieRememberMeManager();
 		SimpleCookie cookie=new SimpleCookie("rememberMe");
 		cookie.setMaxAge(10*60);
 		cManager.setCookie(cookie);
@@ -69,6 +72,7 @@ public class SpringShiroConfig {
 	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
 	}
+	//Realm
 	@Bean
 	public SecurityManager securityManager(Realm realm) {
 		DefaultWebSecurityManager sManager=

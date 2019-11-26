@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link  rel="icon" href="/shopImg/favicon.ico">
-<link rel="icon" href="/shopImg/favicon.ico" type="image/gif" >
+<link  rel="icon" href="/shopImg/favicon1.ico">
 <style>
 * {
 	border: none;
@@ -259,6 +258,7 @@ label .notification .selected:before {
 			if (result.state == 1) {
 				var id= result.data.userId;
 				//window.location.assign("http://localhost/doHomeUI?"+id)
+				window.location.replace("http://localhost/doHomeUI")
 			} else {
 				alert(result.message);
 			}
