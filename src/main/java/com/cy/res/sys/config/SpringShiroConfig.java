@@ -40,18 +40,19 @@ public class SpringShiroConfig {
 		sfBean.setSecurityManager(securityManager);
 		//定义map指定请求过滤规则(哪些资源允许匿名访问,哪些必须认证访问)
 		LinkedHashMap<String,String> map=new LinkedHashMap<>();
+		sfBean.setLoginUrl("/login");
 		//静态资源允许匿名访问:"anon"
 		map.put("/css/**","anon");
 		map.put("/fonts/**","anon");
 		map.put("/jquery/**","anon");
 		map.put("/js/**","anon");
-		map.put("/dologin/**","anon");
+		map.put("/doLogin/**","anon");
 		map.put("/regist/**","anon");
 		map.put("/user/**","anon");
 		map.put("/msg/send","anon");
+		map.put("/doHomeUI/**","anon");
 		//除了匿名访问的资源,其它都要认证("authc")后访问
 		map.put("/**","user");//authc
-		map.put("/doHomeUI/**","authc");
 		sfBean.setFilterChainDefinitionMap(map);
 		return sfBean;
 	}
@@ -70,9 +71,9 @@ public class SpringShiroConfig {
 	}
 	@Bean
 	public SecurityManager securityManager(Realm realm) {
-		 DefaultWebSecurityManager sManager=
-		 new DefaultWebSecurityManager();
-		 sManager.setRealm(realm);
-		 return sManager;
+		DefaultWebSecurityManager sManager=
+		new DefaultWebSecurityManager();
+		sManager.setRealm(realm);
+		return sManager;
 	}
 }

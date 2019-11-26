@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="findOne" resultType="com.cy.res.sys.entity.HxdUser"> 
-		select salt,user_id from user where user_login_name = #{username}
+		select * from user where user_login_name = #{username}
 	</select>
 	<select id="findOneBySaltPassword" resultType="com.cy.res.sys.entity.HxdUser">
 		select * from user where user_id = #{userId} and user_password = #{SaltPassword}

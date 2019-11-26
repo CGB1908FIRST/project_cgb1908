@@ -20,22 +20,23 @@ import com.cy.res.sys.dao.HxdUserDao;
 import com.cy.res.sys.entity.HxdUser;
 @Service
 public class ShiroUserRealm  extends AuthorizingRealm{
+	@Autowired
 	private HxdUserDao hxdUserDao;
 	/**
 	 * 设置凭证匹配器(与用户添加操作使用相同的加密算法)
 	 */
-//	@Override
-//	public void setCredentialsMatcher(
-//	    CredentialsMatcher credentialsMatcher) {
-//		//构建凭证匹配对象
-//		HashedCredentialsMatcher cMatcher=
-//		new HashedCredentialsMatcher();
-//		//设置加密算法
-//		cMatcher.setHashAlgorithmName("MD5");
-//		//设置加密次数
-//		cMatcher.setHashIterations(1);
-//		super.setCredentialsMatcher(cMatcher);
-//	}
+	@Override
+	public void setCredentialsMatcher(
+	    CredentialsMatcher credentialsMatcher) {
+		//构建凭证匹配对象
+		HashedCredentialsMatcher cMatcher=
+		new HashedCredentialsMatcher();
+		//设置加密算法
+		cMatcher.setHashAlgorithmName("MD5");
+		//设置加密次数
+		cMatcher.setHashIterations(1);
+		super.setCredentialsMatcher(cMatcher);
+	}
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
