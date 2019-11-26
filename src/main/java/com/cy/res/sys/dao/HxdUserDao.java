@@ -11,11 +11,18 @@ public interface HxdUserDao {
 	int insertObject(HxdUser userData);
 	
 	/**用户注册时判断登录名称是否存在*/
-	HxdUser findOnebyLoginName(String loginName);
+	int findOnebyLoginName(String userLoginName);
 	
-	/**用户登录判查找用户记录*/
+	/**用户名查找用户记录*/
 	HxdUser findOne(String username);
 	
 	/**匹配加盐密码*/
 	HxdUser findOneBySaltPassword(String SaltPassword,Integer userId);
+	
+	/**用户id更新密码*/
+	int updataPsswordById(Integer userId,String saltPassword,String salt);
+	
+	/**通过用户Id查找用户整条记录*/
+	HxdUser findOneById(Integer userId);
+	
 }

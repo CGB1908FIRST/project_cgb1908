@@ -45,7 +45,7 @@ public class SysOrderServiceImpl implements SysOrderService{
 			order.setProductPrice(cartItem.getSubTotal());
 			order.setProductCount(cartItem.getBuyNum());
 			order.setMemberId(cartItem.getProduct().getMemberId());
-			order.setUserId(2);
+			order.setUserId(1);
 			int rows = SysOrderDao.paySuccessInsert(order);
 			if(rows==0) {
 				throw new ServiceException("订单生成失败");

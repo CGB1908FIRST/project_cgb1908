@@ -96,7 +96,6 @@ public class ProductServiceImpl implements ProductService {
 	public ProductEntity findProductById(Integer productId) {
 		return productDao.findProductById(productId);
 	}
-
 	/**
 	 * 邹 新增商品信息
 	 */
@@ -130,7 +129,7 @@ public class ProductServiceImpl implements ProductService {
 
 		return new PageObject<>(records, rowCount, pageCurrent, pageSize);
 	}
-
+	
 	@Override
 	public int updateProduct(ProductEntity entity) {
 		int row = productDao.updateProduct(entity);

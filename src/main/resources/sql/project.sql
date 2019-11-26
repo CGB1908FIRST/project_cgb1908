@@ -28,17 +28,14 @@ DROP TABLE IF EXISTS user;
 	create table user(
 		user_id int(11) primary key auto_increment,
 		user_login_name varchar(20) DEFAULT NULL,
-		user_nick_name varchar(20) DEFAULT NULL,
-		user_true_name varchar(20) DEFAULT NULL,
 		user_password varchar(20) DEFAULT NULL,
 		user_phone varchar(20) DEFAULT NULL,
 		salt varchar(20) DEFAULT NULL,
 		user_address varchar(40) DEFAULT NULL,
 		user_create_time datetime DEFAULT NULL,
-		createdTime datetime DEFAULT NULL COMMENT '创建时间',
+		createdTime datetime DEFAULT NULL COMMENT '注册时间',
 	  	modifiedTime datetime DEFAULT NULL COMMENT '修改时间',
-	  	createdUser varchar(20) DEFAULT NULL COMMENT '创建用户',
-	  	modifiedUser varchar(20) DEFAULT NULL COMMENT '修改用户'
+	  	createdUser varchar(20) DEFAULT NULL COMMENT '创建用户'
 	)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 --陈延林
 DROP TABLE IF EXISTS comment;

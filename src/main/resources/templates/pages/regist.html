@@ -2,13 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link  rel="icon" href="/shopImg/favicon1.ico">
+<title>好兄弟注册</title>
+
 <style>
 * {
 	border: none;
 	text-decoration: none;
 }
-
+body {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .regist {
 	width: 536px;
 	height: 476px;
@@ -35,6 +44,7 @@
 	border-radius: 4px;
 	border: 1px #aaa solid;
 	font-size: 24px;
+	margin-bottom: 75px;
 }
 
 .title_top {
@@ -121,6 +131,37 @@
 	margin-left: 35px;
 	color: #999;
 }
+.code{
+	width: 480px;
+	height: 50px;
+	margin-top: -5px;
+	margin-left: 35px;
+	padding: 3px 10px;
+	border-radius: 4px;
+	border: 1px #aaa solid;
+	font-size: 20px;
+}
+#hint_name{
+	display: none;
+}
+#username{
+	margin-top: 5px;
+}
+#hint_pswd{
+	display: none;
+	color: red;
+}
+#repassword{
+    width: 480px;
+    height: 50px;
+    margin-left: 35px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px #aaa solid;
+    font-size: 20px;
+	margin-top: 30px;
+}
+
 </style>
 </head>
 <body>
@@ -128,19 +169,22 @@
 		<div class="title_top" >欢迎注册好兄弟账号</div>
 		<div class="titce">
 			<div class="text_down">好吃美味,立即享受。</div>
-			<a href="#" class="jump" style="display: none">商家入驻</a>
+			<!-- <a href="#" class="jump" >商家入驻</a> -->
 		</div>
 		<span> 
+			<span class="phone_pass" id="hint_name">抱歉，用户名已经存在了,再取一个好听的名字吧(>﹏<)</span>
 			<input id="username" type="text" class="once"placeholder="请输入昵称">
 			<input id="password" type="password" class="once" placeholder="请输入密码">
-			<input id="repassword" type="password" class="once" placeholder="请再次输入密码">
+			<span class="phone_pass" id="hint_pswd">两次输入的密码不一致</span>
+			<input id="repassword" type="password"  placeholder="请再次输入密码">
 			<div class="phone">
 				<div class="checkbox">
-					<input placeholder="手机号码" class="inp_num">
+					<input placeholder="手机号码" class="inp_num" id="mobile">
 					<input type="button" value="发送短信" class="send">
 				</div>
-				 <div class="phone_pass">可通过该手机号找回密码</div>
+			 	<div class="phone_pass">可通过该手机号找回密码</div>
 			</div>
+			<input id="code" type="text" placeholder="请输入验证码" class="code">
 			<input type="button" value="立即注册" class="sub" id="setup">
 		</span>
 	</div>
@@ -149,26 +193,82 @@
 <script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#username").blur(isExist);
+		$("#username").focus(function(){
+			$("#hint_name").css("display","none");
+		});
+		$("#repassword").blur(isDifference);
 		$("#setup").click(doregist);
 		$(".send").click(domsg);
+		
 	});
+	function isDifference(){
+		var pw = $("#password").val(); 
+		var rpw = $("#repassword").val();
+		if(pw!=rpw){
+			$("#hint_pswd").css("display","inline-block");
+			$("#password").css("margin-bottom","11px");
+			$("#repassword").css("margin-top","initial");
+		}else{
+			$("#hint_pswd").css("display","none");
+			$("#repassword").css("margin-top","30px");
+		}
+	}
+	function isExist(){
+		//debugger
+		var nn = $("#username").val();
+		if(nn==""){
+			return
+		}
+		const url = "/user/userIsExist";
+		var data = {
+				"username" : nn
+				}
+		$.post(url,data,function(result){
+			console.log(result);
+			if (result.state != 1) {
+				$("#hint_name").css("display","inline-block");
+			}else if(result.state == 0){
+				$("#hint_name").css("display","none");
+			}
+		})
+	}
 	function domsg(){
 		var mobile = $(".inp_num").val();
+		if(mobile == ""){
+			alert("手机号不能为空啊")
+			return
+		}
 		const url = "/msg/send";
+		var	data = {
+				"mobile" : mobile,
+			}
+		$.post(url,data,function(result){
+			if (result.state == 1) {
+				
+			} else {
+				alert(result.message);
+			}
+		})
 	}
 	//向后台发起请求,验证账号密码
 	function doregist(){
 		var nn = $("#username").val();
 		var pw = $("#password").val();
+		var mobile = $("#mobile").val();
+		var code = $("#code").val();
 		
 		const url="/user/regist";
 		var data = {
 			"userLoginName" : nn,
 			"userPassword" : pw,
+			"userPhone" : mobile,
+			"code": code
 		}
 		$.post(url,data,function(result){
 			if (result.state == 1) {
-				alert(result.message);
+				alert("注册成功");
+				window.location.assign("login");
 			} else {
 				alert(result.message);
 			}

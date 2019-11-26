@@ -11,14 +11,13 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
-import com.cy.res.sys.entity.HxdUser;
 import com.cy.res.sys.utils.getSixNumUtil;
 
-@Component
+@Service
 public class HxdUserNoteMsg {
 	/**发送短信*/
-	public String SendMsg(String mobile) throws Exception{
-		String sixNum = getSixNumUtil.getSixNum();
+	public String SendMsg(String mobile){
+		String result = getSixNumUtil.getSixNum();
 		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4FhrHRJxrS3oJTLoCywV", "BfB052xEfSrfqkUXLWM4JjHqBjWzMS");
 		IAcsClient client = new DefaultAcsClient(profile);
 		CommonRequest request = new CommonRequest();
@@ -30,14 +29,16 @@ public class HxdUserNoteMsg {
 		request.putQueryParameter("PhoneNumbers", mobile);
 		request.putQueryParameter("SignName", "马季西裤瓦");
 		request.putQueryParameter("TemplateCode", "SMS_177541904");
-		request.putQueryParameter("TemplateParam",sixNum);//
-		try {
-            CommonResponse response = client.getCommonResponse(request);
-        } catch (ServerException e) {
-            e.printStackTrace();
-        } catch (ClientException e) {
-            e.printStackTrace();
-        }
-		return sixNum;
+		request.putQueryParameter("TemplateParam","{\"code\":\""+result+"\"}");//
+		
+        try {
+			CommonResponse response = client.getCommonResponse(request);
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (ClientException e) {
+			e.printStackTrace();
+		}
+        
+		return result;
 	}
 }

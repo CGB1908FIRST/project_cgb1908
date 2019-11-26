@@ -43,25 +43,4 @@ class CgbRestaurantApplicationTests {
 		int row = shopDap.updateShopInfo(shopInfo);
 		System.out.println(row);
 	}
-	@Test
-	public void testUserInsert() {
-		HxdUser hxdUser = new HxdUser();
-		hxdUser.setUserPassword("123456");
-		hxdUser.setUserLoginName("123");
-		Integer row = hxdUserServcie.insertObject(hxdUser);
-		System.out.println(row);
-	}
-	@Test
-	public void testFindUsername() {
-		HxdUser LoginName = hxdUserDao.findOnebyLoginName("zzh");
-		System.out.println(LoginName);
-	}
-	@Test
-	public void testIsLogin() {
-		String username = "zzh";
-		String password = "123456";
-		boolean isRemenberMe = true;
-		int row = hxdUserServcie.isLogin(username, password,isRemenberMe);
-		System.out.println(row);
-	}
 }

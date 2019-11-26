@@ -15,6 +15,7 @@ import com.cy.res.sys.entity.HxdUser;
 import com.cy.res.sys.service.AreaService;
 import com.cy.res.sys.service.CategoryService;
 
+
 @Controller
 @RequestMapping("/")
 public class PageController {
@@ -29,7 +30,9 @@ public class PageController {
 		HxdUser user = null;
 		Object principal = SecurityUtils.getSubject().getPrincipal();
 		if (principal != null) {
-			user = (HxdUser) principal;
+			user = (HxdUser) principal;}
+		if(principal != null) {
+			user = (HxdUser)principal;
 		}
 		model.addAttribute("user", user);
 		return "home";
@@ -38,6 +41,7 @@ public class PageController {
 	@RequestMapping("doSelectUI")
 	public String doSelectUI(Model model) {
 		// 查询所有商品分类信息并封装到model
+		//查询所有商品分类信息并封装到model
 		List<CategoryEntity> categoryList = categoryService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
 		// 查询所有地区信息并封装到model
