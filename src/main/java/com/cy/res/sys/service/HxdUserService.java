@@ -13,10 +13,11 @@ public interface HxdUserService {
 	
 	int insertObject(HxdUser userData,HttpServletRequest request);
 	
-	int isLogin(String username,String password,Boolean isRememberMe);
+	HxdUser isLogin(String username,String password,Boolean isRememberMe);
 	
 	int findUserByUsername(String username);
 //	List<HxdUser> findOnebyLoginName(String LoginName);
 	int updataPsswordById(String password,String repassword,Integer id);
 	
+	//HxdUser findUserData(String username, String password);
 }

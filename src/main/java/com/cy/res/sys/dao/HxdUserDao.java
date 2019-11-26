@@ -13,7 +13,7 @@ public interface HxdUserDao {
 	/**用户注册时判断登录名称是否存在*/
 	int findOnebyLoginName(String userLoginName);
 	
-	/**用户登录判查找用户记录*/
+	/**用户名查找用户记录*/
 	HxdUser findOne(String username);
 	
 	/**匹配加盐密码*/
@@ -24,4 +24,5 @@ public interface HxdUserDao {
 	
 	/**通过用户Id查找用户整条记录*/
 	HxdUser findOneById(Integer userId);
+	
 }

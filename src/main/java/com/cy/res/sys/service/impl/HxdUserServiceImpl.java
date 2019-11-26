@@ -45,10 +45,10 @@ public class HxdUserServiceImpl implements HxdUserService{
 		return rows;
 	}
 	/**
-	 * 判断是否登录
+	 * 用户否登录
 	 */
 	@Override
-	public int isLogin(String username, String password,Boolean isRemenberMe) {
+	public HxdUser isLogin(String username, String password,Boolean isRemenberMe) {
 		//校验数据
 		if(username==null)
 			throw new ServiceException("获取不到用户名");
@@ -64,7 +64,7 @@ public class HxdUserServiceImpl implements HxdUserService{
 		HxdUser userdata = hxdUserDao.findOneBySaltPassword(hex,id);
 		if(userdata==null||StringUtils.isEmpty(userdata))
 			throw new ServiceException("账户名或者密码错误");
-		return 1;
+		return user;
 	}
 	/**判断用户是否存在*/
 	@Override
@@ -100,4 +100,9 @@ public class HxdUserServiceImpl implements HxdUserService{
 			throw new ServiceException("修改密码失败");
 		return rows;
 	}
+//	@Override
+//	public HxdUser findUserData(String username, String password) {
+//		
+//		return null;
+//	}
 }
