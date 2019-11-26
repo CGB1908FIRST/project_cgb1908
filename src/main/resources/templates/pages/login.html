@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="icon" href="static/timg.jpg" type="image/x-icon">
+<link  rel="icon" href="/shopImg/favicon.ico">
+<link rel="icon" href="/shopImg/favicon.ico" type="image/gif" >
 <style>
 * {
 	border: none;
@@ -256,12 +257,12 @@ label .notification .selected:before {
 		}
 		$.post(url,data,function(result){
 			if (result.state == 1) {
-				alert(result.message);
-				//登录成功开始跳转
-				window.location.assign("http://localhost/doHomeUI")
+				var id= result.data.userId;
+				//window.location.assign("http://localhost/doHomeUI?"+id)
 			} else {
 				alert(result.message);
 			}
 		})
+		
 	}
 </script>

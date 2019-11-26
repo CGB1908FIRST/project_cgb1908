@@ -41,13 +41,13 @@ public class HxdUserController {
 //	}
 	@RequestMapping("dologin")
 	public JsonResult doLogin(String username, String password, boolean isRememberMe) {
-		hxdUserService.isLogin(username, password,isRememberMe);
+		HxdUser user = hxdUserService.isLogin(username, password,isRememberMe);
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		if (isRememberMe)
 			token.setRememberMe(true);
 		subject.login(token);// 提交给securityManager
-		return new JsonResult("login ok");
+		return new JsonResult(user);
 	}
 	@RequestMapping("userIsExist")
 	public JsonResult userIsExist(String username) {

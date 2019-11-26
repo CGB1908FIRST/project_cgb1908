@@ -43,12 +43,4 @@ class CgbRestaurantApplicationTests {
 		int row = shopDap.updateShopInfo(shopInfo);
 		System.out.println(row);
 	}
-	@Test
-	public void testIsLogin() {
-		String username = "zzh";
-		String password = "123456";
-		boolean isRemenberMe = true;
-		int row = hxdUserServcie.isLogin(username, password,isRemenberMe);
-		System.out.println(row);
-	}
 }
