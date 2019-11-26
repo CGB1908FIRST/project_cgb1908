@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- Horizontal Form -->
+ <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">添加评价</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form class="form-horizontal">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="commentCoreId" class="col-sm-2 control-label">评分</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" name="commentCore" id="commentCoreId" placeholder="评分">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="commentContentId" class="col-sm-2 control-label">评价内容</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="commentContent" id="commentContentId" placeholder="评价内容">
+            </div>
+         
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <button type="button" class="btn btn-info pull-right btn-save" id="but">提交</button>
+        </div>
+        <!-- /.box-footer -->
+      </form>
+    </div>
+ <script src="jquery/jquery.min.js"></script>
+<script type="text/javascript">
+
+   $(function(){
+	   $("#but").click(doInsert)
+   });
+   
+   function doInsert(){
+	   //1.获取用户提交数据
+	   var params={
+			   commentCore:$("#commentCoreId").val(),  //把表单中的属性为commentCoreId的值设置到commentCore中
+			   commentContent:$("#commentContentId").val()
+	   }
+	   
+	   console.log(params);
+	   //2.定义请求的url
+	   var url="comment/doInsert"   //设置访问的url
+	   //3.异步提交请求,执行更新操作
+	   $.post(url,params,function(result){   //以post提交url,参数，弹出返回提示
+		   alert(result.message);
+	   })
+   }
+</script>
+
+</body>
+</html>
+
+    
+    

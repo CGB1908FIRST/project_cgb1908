@@ -7,7 +7,7 @@
 		select member_id from member
 		<choose>
 			<when test="memberId != 0">
-				where member_Id = #{memberId} 
+				where member_Id = #{memberId}
 			</when>
 			<otherwise>
 			</otherwise>
@@ -15,27 +15,76 @@
 	</select>
 	<select id="findAllProduct"
 		resultType="com.cy.res.sys.entity.ProductEntity">
-		select * from product 
+		select * from product
 		<choose>
 			<when test="memberIds.length > 0 and categoryId!=0">
 				where
-				<foreach collection="memberIds" item="memberId" separator="or" open="(" close=")">
-					member_Id=#{memberId}
-				</foreach>
-				and category_Id=#{categoryId}
-			</when>
-			<when test="memberIds.length > 0 and categoryId==0">
-				where
-				<foreach collection="memberIds" item="memberId" separator="or">
-					member_Id=#{memberId}
-				</foreach>
-			</when>
-			<when test="memberIds.length == 0 and categoryId!=0">
-				where category_Id=#{categoryId}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
+				<foreach collection="memberIds" item="memberId"
+					separator="or" open="(" close=")">
+					select * from product
+					<choose>
+						<when test="memberIds.length > 0 and categoryId!=0">
+							<foreach collection="memberIds" item="memberId"
+								separator="or" open="(" close=")">
+								member_Id=#{memberId}
+							</foreach>
+							and category_Id=#{categoryId}
+						</when>
+						<when test="memberIds.length > 0 and categoryId==0">
+							where
+							<foreach collection="memberIds" item="memberId"
+								separator="or">
+								member_Id=#{memberId}
+							</foreach>
+						</when>
+						<when test="memberIds.length == 0 and categoryId!=0">
+							where category_Id=#{categoryId}
+						</when>
+						<otherwise>
+						</otherwise>
+					</choose>
+	</select>
+	<update id="insertProduct">
+		insert into product
+		(product_id,product_name,product_subtitle,product_original_prize,
+		product_sell_num,product_core,product_current_prize,product_img_url,
+		category_id,member_id,createdTime,modifiedTime,createdUser,modifiedUser)
+		values(null,
+		#{productName},
+		#{productSubtitle},
+		50,
+		0,
+		0,
+		45,
+		#{productImgUrl},
+		#{categoryId},
+		2,
+		now(),
+		now(),
+		#{createdUser},
+		#{modifiedUser})
+	</update>
+
+	<!-- 邹远文 -->
+	<select id="findPageObject"
+		resultType="com.cy.res.sys.entity.ProductEntity">
+		select * from product
+		<if test="memberId!=null">
+			<where>
+				member_id = #{memberId}
+			</where>
+		</if>
+		order by createdTime
+		limit #{startIndex},#{pageSize}
+	</select>
+
+	<select id="findRowCount" resultType="int">
+		select count(*) from product
+		<if test="memberId!=null">
+			<where>
+				member_id = #{memberId}
+			</where>
+		</if>
 	</select>
 </mapper>
 

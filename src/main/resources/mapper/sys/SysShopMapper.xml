@@ -21,8 +21,7 @@
 		shop_message = #{shopMessage},
 		member_name = #{memberName},
 		member_phone = #{memberPhone},
-		modifiedTime = now(),
-		shop_img_url = #{shopImgUrl}
+		modifiedTime = now()
 		<where>
 		member_id = #{memberId}
 		</where>
