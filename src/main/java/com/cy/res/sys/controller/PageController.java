@@ -12,7 +12,6 @@ import com.cy.res.sys.entity.AreaEntity;
 import com.cy.res.sys.entity.CategoryEntity;
 import com.cy.res.sys.service.AreaService;
 import com.cy.res.sys.service.CategoryService;
-import org.springframework.ui.Model;
 
 
 @Controller

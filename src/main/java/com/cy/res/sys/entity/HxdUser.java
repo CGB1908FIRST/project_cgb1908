@@ -18,4 +18,5 @@ public class HxdUser {
 	private String createdUser;
 	private String modifiedUser;
 	private String salt;
+	private String code;
 }
