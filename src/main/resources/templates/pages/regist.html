@@ -194,7 +194,9 @@ body {
 <script type="text/javascript">
 	$(function(){
 		$("#username").blur(isExist);
-		$("#username").focus(isExist);
+		$("#username").focus(function(){
+			$("#hint_name").css("display","none");
+		});
 		$("#repassword").blur(isDifference);
 		$("#setup").click(doregist);
 		$(".send").click(domsg);
