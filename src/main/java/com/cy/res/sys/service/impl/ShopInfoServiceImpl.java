@@ -36,9 +36,4 @@ public class ShopInfoServiceImpl implements ShopInfoService {
 		return shopDao.findAllShop();
 	}
 
-	@Override
-	public ShopInfo findShopInfoByProductId(Integer productId) {
-		return shopDao.findShopInfoByProductId(productId);
-	}
-
 }

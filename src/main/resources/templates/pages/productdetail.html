@@ -9,14 +9,14 @@
 			<div class="col-md-6">
 				<div>
 					<div class="col-md-5" style="margin-right: 0px;">
-						<img src="${shop.shopImgUrl}" style="width: 180px; height: 130px"
+						<img th:src="${shop.shopImgUrl}" style="width: 180px; height: 130px"
 							class="img-thumbnail">
 					</div>
 					<div class="col-md-7">
 						<span><h3>[[${shop.shopName}]]</h3></span> <span
 							class="star black-star" style="margin-bottom: 10px;"> <span
 							class="star-score" style="width: 65px"></span>
-						</span><br> <span>[[${shop.shopAdress}]]</span>
+						</span><br> <span>[[${shop.shopAddress}]]</span>
 					</div>
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 <div class="row cannot_select">
 	<!-- 图片 -->
 	<div class="col-md-6" style="width: 510px;">
-		<img src="${productdetail.productImgUrl}"
+		<img th:src="${product.productImgUrl}"
 			style="width: 460px; height: 280px" class="img-thumbnail">
 	</div>
 	<div class="col-md-6">
@@ -72,7 +72,7 @@
 		<div class="good-describe-font buy-num">数量：&nbsp;1份</div>
 		<div class="buy-operation">
 			<button type="button" class="btn btn-info"
-				style="width: 90px; height: 40px;">购买</button>
+				style="width: 90px; height: 40px;" th:onclick="tobuy('[[${product.productId}]]');">购买</button>
 			<button type="button" class="btn btn-info"
 				style="margin-left: 350px; width: 40px; height: 40px; padding-left: 5px;">收藏</button>
 		</div>
@@ -86,25 +86,54 @@
 			<h4>用户评价</h4>
 		</div>
 	</div>
-	<div class="col-md-12">
+	<div class="col-md-12" id="commentdetail">
 		<ul>
-			<s:iterator value="comments" var="comment">
-				<li class="comment-content">
-					<div class="clearfix"
-						style="color: #898989; height: 15px; line-height: 15px; vertical-align: top;">
-						<span class="fr"
-							style="margin-right: 15px; color: #898989; height: 15px; line-height: 15px; vertical-align: top;">评价时间
-							${comment.commentDate}</span> <span
-							style="color: #898989;; font-size: 14px; margin-right: 15px; padding: 0 15px;">${comment.user.userNickName
-							}</span> <span>总体评价：</span> <span class="star black-star"> <span
-							class="star-score" style="width: {{${comment.commentCore"></span>
-						</span> <span style="margin-left: 10px;">${comment.commentCore}分</span>
+			<li class="comment-content" th:if="${#lists.isEmpty(commentList)}">该商品还没有评价</li>
+			<li class="comment-content" th:each="comment:${commentList}">
+				<div class="clearfix"
+					style="color: #898989; height: 15px; line-height: 15px; vertical-align: top;">
+					<span class="fr"
+						style="margin-right: 15px; color: #898989; height: 15px; line-height: 15px; vertical-align: top;">评价时间
+						[[${comment?.commentDate}]]</span> <span
+						style="color: #898989;; font-size: 14px; margin-right: 15px; padding: 0 15px;"></span> <span>总体评价：</span>
+					<div
+						style="position: relative; font-size: 10px; color: #f76120; display: inline-block;">
+						<div>
+							<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+						</div>
+						<!--width属性的值为评分乘以font-size属性的值  -->
+						<div
+							style="position: absolute; left: 0; top: 0; overflow: hidden; text-overflow: clip; white-space: nowrap; display: inline-block;"
+							th:styleappend="'width:'+ (${comment.commentCore}*12.1)+'px'">
+							<span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart" aria-hidden="true"></span><span
+								class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+						</div>
 					</div>
-					<div class="user-reply">${comment.commentContent}</div>
-				</li>
-			</s:iterator>
+
+					<span style="margin-left: 10px;">[[${comment?.commentCore}]]分</span>
+				</div>
+				<div class="user-reply">[[${comment?.commentContent}]]</div>
+			</li>
 		</ul>
 	</div>
 </div>
 </div>
 </div>
+<script type="text/javascript">
+	function tobuy(productId){
+		var data = {"productId":productId};
+		$.post("/shopping/buyone",data,function(result){
+			console.log(result);
+			if(result.state==1){
+				alert(result.message);
+			}
+		});
+	}
+</script>

@@ -7,38 +7,6 @@
 		select member_id from member
 		<choose>
 			<when test="memberId != 0">
-<<<<<<< HEAD
-				where member_Id = #{memberId} 
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-	</select>
-	<select id="findAllProduct"
-		resultType="com.cy.res.sys.entity.ProductEntity">
-		select * from product 
-		<choose>
-			<when test="memberIds.length > 0 and categoryId!=0">
-				where
-				<foreach collection="memberIds" item="memberId" separator="or" open="(" close=")">
-					member_Id=#{memberId}
-				</foreach>
-				and category_Id=#{categoryId}
-			</when>
-			<when test="memberIds.length > 0 and categoryId==0">
-				where
-				<foreach collection="memberIds" item="memberId" separator="or">
-					member_Id=#{memberId}
-				</foreach>
-			</when>
-			<when test="memberIds.length == 0 and categoryId!=0">
-				where category_Id=#{categoryId}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-	</select>
-=======
 				where member_Id = #{memberId}
 			</when>
 			<otherwise>
@@ -113,9 +81,6 @@
 			</where>
 		</if>
 	</select>
-	
-	
->>>>>>> branch 'master' of https://github.com/CGB1908FIRST/project_cgb1908.git
 </mapper>
 
 

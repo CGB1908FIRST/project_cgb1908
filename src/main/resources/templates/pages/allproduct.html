@@ -1,7 +1,7 @@
 <div class="col-md-3 column" th:each="p:${productList}">
 	<div class="good-hover"
 		style="padding-top: 20px; margin-top: 10px; margin-bottom: 10px">
-		<a th:href="javascript:gotoDetail('[[${p.productId}]]')" style="text-decoration: none;">
+		<a href="#" style="text-decoration: none;" th:onclick="gotoDetail('[[${p.productId}]]')">
 			<div class="preview center-block">
 				<!-- 图片 208 156-->
 				<img th:src="${p.productImgUrl}"
@@ -56,6 +56,6 @@
 	function gotoDetail(productId){
 		var data ={"productId":productId};
     	$("#mainContentId").empty();
-    	$("#selectOptionId").load("/product/gotoDetail");
+    	$("#selectOptionId").load("/product/gotoDetail",data);
 	}
 </script>
