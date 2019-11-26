@@ -14,7 +14,7 @@
 <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 <script src="/jquery/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<title>首页</title>
+<title>好兄弟首页</title>
 <style type="text/css">
 .myglyphicon {
 	color: white;
@@ -22,9 +22,6 @@
 	font-size: 20px;
 	text-shadow: rgb(0, 255, 0) 3px 3px 3px;
 	font-size: 20px;
-}
-.logout{
-	color:#fff;
 }
 </style>
 </head>
@@ -51,19 +48,27 @@
 							<li><a href="#">全部商品</a></li>
 							<li><a href="#">所有卖家</a></li>
 						</ul>
-						<form class="navbar-form navbar-left" role="search">
+<!-- 						<form class="navbar-form navbar-left" role="search">
 							<div class="form-group">
 								<input type="text" class="form-control" />
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
-						</form>
-						<button type="button" class="btn btn-default btn-sm"
+						</form> -->
+						<div th:if="${user}">
+						<span th:text="'欢迎'+${user.userLoginName}" style="color:white;margin-left:500px;" ></span>
+						<button  type="button" class="btn btn-default btn-sm"
+							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;" th:onclick="logout();">
+							注销</button>
+						</div>
+						<div th:if="!${user}">
+						<span style="color:white;margin-left:500px;"></span>
+						<button  type="button" class="btn btn-default btn-sm"
 							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;" th:onclick="login();">
 							登录</button>
 						<button type="button" class="btn btn-default btn-sm"
 							style="text-shadow: black 5px 3px 3px; margin: 10px 10px;" th:onclick="regist();">
 							注册</button>
-						<span class="logout" id="logout">注销</span>
+						</div>
 					</div>
 				</nav>
 				<div class="content-wrapper">
@@ -138,6 +143,10 @@
 	function login(){
 		//alert("easda");
 		window.location.assign("login");
+	}
+	function logout(){
+		//alert("easda");
+		window.location.assign("doLogout");
 	}
 	function regist(){
 		window.location.assign("regist");

@@ -2,6 +2,7 @@ package com.cy.res.sys.controller;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cy.res.sys.entity.AreaEntity;
 import com.cy.res.sys.entity.CategoryEntity;
+import com.cy.res.sys.entity.HxdUser;
 import com.cy.res.sys.service.AreaService;
 import com.cy.res.sys.service.CategoryService;
 
@@ -23,11 +25,17 @@ public class PageController {
 	private AreaService areaService;
 	/**返回首页页面*/
 	@RequestMapping("doHomeUI")
-	public String doHomeUI() {
+	public String doHomeUI(Model model) {
+		HxdUser user = null;
+		Object principal = SecurityUtils.getSubject().getPrincipal();
+		if(principal != null) {
+			user = (HxdUser)principal;
+		}
+		model.addAttribute("user", user);
 		return "home";
 	}
 	@RequestMapping("doSelectUI")
-	public String doHomeUI(Model model) {
+	public String doSelectUI(Model model) {
 		//查询所有商品分类信息并封装到model
 		List<CategoryEntity> categoryList = categoryService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
