@@ -13,4 +13,6 @@ public interface ShopInfoService {
 	
 	//更新商店信息
 	public int updateShopInfo(ShopInfo shopinfo);
+	
+	public ShopInfo findShopInfoByProductId(Integer productId);
 }

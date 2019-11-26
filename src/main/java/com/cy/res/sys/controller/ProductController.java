@@ -7,12 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.cy.res.common.vo.JsonResult;
+import com.cy.res.sys.entity.CommentEntity;
 import com.cy.res.common.vo.PageObject;
 import com.cy.res.sys.entity.FindProductEntity;
 import com.cy.res.sys.entity.ProductEntity;
+import com.cy.res.sys.entity.ShopInfo;
+import com.cy.res.sys.service.CommentService;
 import com.cy.res.sys.service.ProductService;
+import com.cy.res.sys.service.ShopInfoService;
 
 /**
  * product控制层对象用于接收和响应页面和product相关的请求
@@ -26,7 +29,21 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-
+	@Autowired
+	private CommentService commentService;
+	@Autowired
+	private ShopInfoService ShopInfoService;
+	
+	@RequestMapping("gotoDetail")
+	public String gotoDetail(Integer productId,Model model) {
+		ProductEntity product = productService.findProductById(productId);
+		List<CommentEntity> commentList = commentService.findCommentByProductId(productId);
+		ShopInfo shop = ShopInfoService.findShopInfoByProductId(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("shop", shop);
+		return "productdetail";
+	}
 	@RequestMapping("doFindAllProduct")
 	public String doFindAllProduct(FindProductEntity findProductEntity,Model model) {
 		List<ProductEntity> productList = productService.findAllProduct(findProductEntity);

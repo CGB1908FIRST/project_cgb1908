@@ -3,11 +3,9 @@ package com.cy.res.sys.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
+import com.cy.res.sys.entity.CommentEntity;
 import com.cy.res.commom.vo.ServiceException;
 import com.cy.res.sys.entity.CommentEntity;
-
-
 /**
  * Comment的业务层接口
  * @author xiezhonghuai
@@ -16,7 +14,7 @@ import com.cy.res.sys.entity.CommentEntity;
 @Service
 public interface CommentService {
 	
-	
+	public List<CommentEntity> findCommentByProductId(Integer productId);
 	/**
 	 * 用户基于用户ID和商品ID对商品添加评价的方法
 	 * @author xiezhonghuai
@@ -36,7 +34,6 @@ public interface CommentService {
 	 *@return List<CommentEntity>  返回一个评价集合
 	 * @throws Exception 
 	 */
-	public List<CommentEntity> findCommentByProductId(Integer productId) throws ServiceException;
 
 	
 

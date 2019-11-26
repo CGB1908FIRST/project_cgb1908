@@ -21,28 +21,23 @@
 				where
 				<foreach collection="memberIds" item="memberId"
 					separator="or" open="(" close=")">
-					select * from product
-					<choose>
-						<when test="memberIds.length > 0 and categoryId!=0">
-							<foreach collection="memberIds" item="memberId"
-								separator="or" open="(" close=")">
-								member_Id=#{memberId}
-							</foreach>
-							and category_Id=#{categoryId}
-						</when>
-						<when test="memberIds.length > 0 and categoryId==0">
-							where
-							<foreach collection="memberIds" item="memberId"
-								separator="or">
-								member_Id=#{memberId}
-							</foreach>
-						</when>
-						<when test="memberIds.length == 0 and categoryId!=0">
-							where category_Id=#{categoryId}
-						</when>
-						<otherwise>
-						</otherwise>
-					</choose>
+					member_Id=#{memberId}
+				</foreach>
+				and category_Id=#{categoryId}
+			</when>
+			<when test="memberIds.length > 0 and categoryId==0">
+				where
+				<foreach collection="memberIds" item="memberId"
+					separator="or">
+					member_Id=#{memberId}
+				</foreach>
+			</when>
+			<when test="memberIds.length == 0 and categoryId!=0">
+				where category_Id=#{categoryId}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</select>
 	<update id="insertProduct">
 		insert into product
@@ -87,7 +82,3 @@
 		</if>
 	</select>
 </mapper>
-
-
-
-

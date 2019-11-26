@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.cy.res.sys.entity.ProductEntity;
 
@@ -17,6 +18,11 @@ import com.cy.res.sys.entity.ProductEntity;
 @Mapper
 public interface ProductDao {
 	
+
+	@Select("select * from product where member_Id=#{memberId}")
+	List<ProductEntity> findProductByMemberId(Integer memberId);
+	
+
 	Integer[] findMemberIdByAreaId(Integer areaId);
 	/**
 	 * 根据条件查询product
@@ -38,6 +44,12 @@ public interface ProductDao {
 	/**
 	 * 添加商品信息
 	 */
+
+	int insert(ProductEntity entity);
+
+	@Select("select * from product where product_Id=#{productId}")
+	ProductEntity findProductById(Integer productId); 
+
 	int insertProduct(ProductEntity entity);
 	
 	/**
@@ -58,4 +70,5 @@ public interface ProductDao {
 	 * 更新数据
 	 */
 	int updateProduct(ProductEntity entity);
+
 }

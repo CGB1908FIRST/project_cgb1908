@@ -79,11 +79,6 @@ public class ProductServiceImpl implements ProductService {
 			throw new ServiceException("此信息可能已经不存在");
 		return rows;
 	}
-	/**
-	 * 添加商品信息
-	 * @author liuhaibo
-	 */
-
 	
 	/**
 	 * 邹 新增商品信息
@@ -117,6 +112,18 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductEntity> records = productDao.findPageObject(pageSize, startIndex, memberId);
 
 		return new PageObject<>(records, rowCount, pageCurrent, pageSize);
+	}
+
+	@Override
+	public ProductEntity findProductById(Integer productId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductEntity> findProductByMemberId(Integer memberId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

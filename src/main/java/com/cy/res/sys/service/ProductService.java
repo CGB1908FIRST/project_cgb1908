@@ -2,7 +2,6 @@ package com.cy.res.sys.service;
 
 import java.util.List;
 
-
 import com.cy.res.common.vo.PageObject;
 import com.cy.res.sys.entity.FindProductEntity;
 import com.cy.res.sys.entity.ProductEntity;
@@ -16,6 +15,10 @@ import com.cy.res.sys.entity.ProductEntity;
  */
 public interface ProductService {
 	
+	
+	ProductEntity findProductById(Integer productId);
+	
+	List<ProductEntity> findProductByMemberId(Integer memberId);
 	/**
 	 * 查询所有product
 	 * @return

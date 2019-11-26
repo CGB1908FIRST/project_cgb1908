@@ -16,7 +16,7 @@ public class SysOrder implements Serializable {
 	/**订单号*/
 	private String orderNum;
 	/**订单价格*/
-	private Integer orderPrice;
+	private Float orderPrice;
 	/**订单评论*/
 	private String orderIsComment;
 	/**订单日期*/
@@ -26,7 +26,7 @@ public class SysOrder implements Serializable {
 	/**商品名称*/
 	private String productName;
 	/**产品价格*/
-	private Float productPrice;
+	private Double productPrice;
 	/**产品数量*/
 	private Integer productCount;
 	/**会员ID*/
