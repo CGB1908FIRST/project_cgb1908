@@ -70,17 +70,19 @@ public class ProductServiceImpl implements ProductService {
 	 */
 	@Override
 	public int doDeleteObject(Integer id) {
-		//1.合法性验证
-		if(id==null||id<=0)
-			throw new ServiceException("数据不合法,id="+id);
-		//2.3执行删除操作
-		int rows=productDao.deleteObject(id);
-		if(rows==0)
+		// 1.合法性验证
+		if (id == null || id <= 0)
+			throw new ServiceException("数据不合法,id=" + id);
+		// 2.3执行删除操作
+		int rows = productDao.deleteObject(id);
+		if (rows == 0)
 			throw new ServiceException("此信息可能已经不存在");
 		return rows;
 	}
+
 	/**
 	 * 添加商品信息
+	 * 
 	 * @author liuhaibo
 	 */
 
@@ -88,18 +90,19 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductEntity> findProductByMemberId(Integer memberId) {
 		return productDao.findProductByMemberId(memberId);
 
-}
-@Override
-public ProductEntity findProductById(Integer productId) {
-	return productDao.findProductById(productId);
-}
+	}
+
+	@Override
+	public ProductEntity findProductById(Integer productId) {
+		return productDao.findProductById(productId);
+	}
 
 	/**
 	 * 邹 新增商品信息
 	 */
 	@Override
 	public int productInsert(ProductEntity entity) {
-		if (entity == null) {
+		if (entity.getProductName() == null) {
 			throw new ServiceException("请输入内容");
 		}
 		int row = productDao.insertProduct(entity);
@@ -120,12 +123,18 @@ public ProductEntity findProductById(Integer productId) {
 			throw new ServiceException("当前记录可能已经不存在");
 		}
 		// 定义页面大小
-		int pageSize = 4;
+		int pageSize = 6;
 		// 计算开始页码
 		int startIndex = (pageCurrent - 1) * pageSize;
 		List<ProductEntity> records = productDao.findPageObject(pageSize, startIndex, memberId);
 
 		return new PageObject<>(records, rowCount, pageCurrent, pageSize);
+	}
+
+	@Override
+	public int updateProduct(ProductEntity entity) {
+		int row = productDao.updateProduct(entity);
+		return row;
 	}
 
 }

@@ -3,66 +3,66 @@
 		<form name="addProductForm">
 			<div class="form-group">
 				<label for="productname">商品名称：</label> <input type="input"
-					class="form-control" id="productnameid"
+					class="form-control" id="productnameid1"
 					ng-model="product.productName" />
 			</div>
 			<div class="form-group">
 				<label for="producttittle">商品副标题</label> <input type="text"
-					class="form-control" id="producttittle"
+					class="form-control" id="producttittle1"
 					ng-model="product.productSubtitle">
 			</div>
 			<div class="form-group">
 				<label for="producttittle">商品类别：</label> <select
-					name="productCategory" id="categoryProductId">
-					<option th:each="c:${categoryList}" th:value="${c.categoryId}" >[[${c.categoryName}]]</option>
+					name="productCategory" id="categoryProductId1">
+					<option th:each="c:${categoryList}" th:value="${c.categoryId}">[[${c.categoryName}]]</option>
 				</select>
 			</div>
 			<div class="form-group" style="display: inline-block; width: 120px;">
 				<label for="producoldprice">商品原价</label> <input type="number"
-					class="form-control" id="producoldprice"
+					class="form-control" id="producoldprice1"
 					ng-model="product.productOriginalPrize">
 			</div>
 			<div class="form-group" style="display: inline-block; width: 120px;">
 				<label for="productnewprice">商品现价</label> <input type="number"
-					class="form-control" id="productnewprice"
+					class="form-control" id="productnewprice1"
 					ng-model="product.productCurrentPrize">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputFile">上传商品图片</label> <input type="file"
-					id="exampleInputFile" ng-model="file" name="file">
+					id="exampleInputFile1" ng-model="file" name="file">
 				<p class="help-block">支持JPG，JPEG，GIF，PNG, 且小于5M</p>
 			</div>
-			<button type="submit" class="btn btn-default" id="commitProduct">发布</button>
+			<button type="submit" class="btn btn-default" id="commitProduct1">发布</button>
 		</form>
 	</div>
 </div>
 <script src="/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#commitProduct").click(saveProductMessage);
+		$("#commitProduct1").click(saveProductMessage);
 	});
 	function saveProductMessage() {
 		var params = {
-			"productName" : $("#productnameid").val(),
-			"productSubtitle" : $("#producttittle").val(),
-			"categoryId" : $("#categoryProductId").val(),
-			"productOriginalPrize" : $("#producoldprice").val(),
-			"productCurrentPrize" : $("#productnewprice").val(),
-			"productImgUrl" : $("#exampleInputFile").val()
+			"productName" : $("#productnameid1").val(),
+			"productSubtitle" : $("#producttittle1").val(),
+			"categoryId" : $("#categoryProductId1").val(),
+			"productOriginalPrize" : $("#producoldprice1").val(),
+			"productCurrentPrize" : $("#productnewprice1").val(),
+			"productImgUrl" : $("#exampleInputFile1").val()
 		};
-		
+
 		var url = "product/doReleaseProcduct";
 		//debugger
-		console.log(params)
-		$.post(url,params,saveProduct);
+		//console.log(params)
+		$.post(url, params, saveProduct);
 	}
 	function saveProduct(result) {
-		if (result.state == 1) {
-			alert(result.message);
-		} else {
-			alert(result.message)
-		}
+		//console.log(result)
+		alert(result.message);
+		
+		$("#mainContentId").load("productManager");
 	}
+
 	/* function doGetParams(){
 		var params = {
 			"productName":${"#productnameid"}.val(),

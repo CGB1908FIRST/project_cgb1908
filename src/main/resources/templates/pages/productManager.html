@@ -1,21 +1,21 @@
-<div style="margin: 0px 100px 100px 100px">
+<div style="margin: 0px 100px 100px 150px">
 	<div>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<td>商品名称</td>
-						<td>现价</td>
-						<td>原价</td>
-						<td>销售量</td>
-						<td>操作</td>
-					</tr>
-				</thead>
-				<tbody  id="tBodyId">
-					<tr>
-						<td>数据加载中...............................</td>
-					</tr>
-				</tbody>
-			</table>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>商品名称</td>
+					<td>现价</td>
+					<td>原价</td>
+					<td>销售量</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody id="tBodyId">
+				<tr>
+					<td>数据加载中...............................</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div id="pageId">
 		<ul class="pagination pagination-sm no-margin pull-right">
@@ -35,11 +35,12 @@
 		doShowPage();
 		//在pageId对象上注册click事件,当点击pageId对象内部的元素是执行doJumpPage函数
 		$("#pageId").on("click", ".first,.pre,.next,.last", doJumpToPage);
+
 	});
 
 	function doShowPage() {
 		var pageCurrent = $("#pageId").data("pageCurrent");
-		if(!pageCurrent)
+		if (!pageCurrent)
 			pageCurrent = 1;
 		var url = "product/doFindPageObject";
 		var params = {
@@ -51,72 +52,109 @@
 
 	function doHandleResponseResult(result) {
 		console.log(result);
-		if(result.state==1){
+		if (result.state == 1) {
 			//设置分页页面初始值
 			setOriginalPage(result.data);
 			//显示页面
 			doSetBodyElement(result.data.records);
 			//console.log(result.data);
-		}else{
+		} else {
 			alert(result.message);
 		}
 	}
-	function doSetBodyElement(records){
+	function doSetBodyElement(records) {
 		console.log(records)
 		//1,获取tBody,并清空空里面内容
 		var tBody = $("#tBodyId");
 		tBody.empty();
 		//2迭代records记录并将其追加到tbody中
-		for(var i = 0 ;i<records.length;i++){
+		for (var i = 0; i < records.length; i++) {
 			var tr = $("<tr></tr>");
+			//将商品id存入tr中
+			tr.data("id", records[i].productId);
 			var tds = doGetTds(records[i]);
 			tr.append(tds);
 			tBody.append(tr);
 		}
 	}
-	function doGetTds(data){
-		var tds = "<td>"+data.productName+"<td/>"+
-				  "<td>"+data.productCurrentPrize+"<td/>"+
-				  "<td>"+data.productOriginalPrize+"<td/>"+
-				  "<td>"+data.productSellNum+"<td/>"+
-				  "<td><button type='button' class='btn btn-default btn-update'>修改</button><td/>";
+	function doGetTds(data) {
+		var tds = "<td>" + data.productName + "<td/>" + "<td>"
+				+ data.productCurrentPrize + "<td/>" + "<td>"
+				+ data.productOriginalPrize + "<td/>" + "<td>"
+				+ data.productSellNum + "<td/>"
+				+ "<td><a class='btn-delete'>delete</a>"
+				+ "&nbsp;<a class='btn-update'>update</a></td>";
 		return tds;
 	}
-	
-	
-	
-	
-	
-	
+
 	/* 分页查询 */
-	function setOriginalPage(page){
-		$(".rowCount").html("总记录数("+page.rowCount+")");
-		$(".pageCount").html("总页数("+page.pageCount+")");
-		$(".pageCurrent").html("当前页("+page.pageCurrent+")");
-		
-		$("#pageId").data("pageCurrent",page.pageCurrent);
-		$("#pageId").data("pageCount",page.pageCount);
+	function setOriginalPage(page) {
+		$(".rowCount").html("总记录数(" + page.rowCount + ")");
+		$(".pageCount").html("总页数(" + page.pageCount + ")");
+		$(".pageCurrent").html("当前页(" + page.pageCurrent + ")");
+
+		$("#pageId").data("pageCurrent", page.pageCurrent);
+		$("#pageId").data("pageCount", page.pageCount);
 	}
-	function doJumpToPage(){
+	function doJumpToPage() {
 		//alert(123)
 		var cls = $(this).prop("class");
 		var pageCount = $("#pageId").data("pageCount");
 		var pageCurrent = $("#pageId").data("pageCurrent");
-		
-		if(cls=="first"){
+
+		if (cls == "first") {
 			pageCurrent = 1;
-		}else if(cls=="pre" && pageCurrent>1){
+		} else if (cls == "pre" && pageCurrent > 1) {
 			pageCurrent--;
-		}else if(cls=="next" && pageCurrent<pageCount){
+		} else if (cls == "next" && pageCurrent < pageCount) {
 			pageCurrent++;
-		}else if(cls=="last" ){
-			pageCurrent=pageCount;
-		}else{
+		} else if (cls == "last") {
+			pageCurrent = pageCount;
+		} else {
 			return;
 		}
-		
+
 		$("#pageId").data("pageCurrent", pageCurrent);
 		doShowPage();
 	}
+
+	/* 修改页面 */
+	$("#tBodyId").on("click", ".btn-update", doLoadEditUI)
+	 .on("click",".btn-delete",doDeleteObject)
+
+	function doLoadEditUI() {
+		var productId = $(this).parents("tr").data("id");
+		//alert(productId);
+		var params = {
+			"productId" : productId
+		};
+		var url = "product/findProductByProductId";
+		$.getJSON(url, params, doEditUI)
+	}
+	function doEditUI(result) {
+		var res = $("#mainContentId").data("res");
+		//console.log(res);
+		$("#mainContentId").load("editProductPage", function() {
+			$("#mainContentId").data("res", result);
+		});
+	}
 	
+	function doDeleteObject(){
+		var productId = $(this).parents("tr").data("id");
+		var params = {"productId" : productId};
+		var url = "product/doDeleteObject";
+		$.getJSON(url,params,deleteProduct)
+	}
+	
+	function deleteProduct(result){
+		
+		if(result.state == 1){
+			alert(result.message)
+		}else{
+			alert(result.message)
+		}
+		
+		//重新查询
+		doShowPage();
+	}
 </script>

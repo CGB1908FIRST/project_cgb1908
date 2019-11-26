@@ -49,5 +49,5 @@ public interface ProductService {
 	 * 邹
 	 * 更新商品信息
 	 */
-	//int updateProduct(ProductEntity entity);
+	int updateProduct(ProductEntity entity);
 	}

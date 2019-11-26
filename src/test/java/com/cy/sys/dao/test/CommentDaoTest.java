@@ -69,11 +69,5 @@ public class CommentDaoTest {
 	/**测试findCommentByCommentId()方法的测试用例方法
 	 * @author xiezhonghuai
 	 */
-	@Test
-	public void findCommentByCommentIdTest() {
-		Integer commentId=2;
-		CommentEntity comment = commentDao.findCommentByCommentId(commentId);
-		System.out.println("comment"+comment);
-	}
 
 }

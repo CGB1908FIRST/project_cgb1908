@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.cy.res.common.vo.JsonResult;
-
 import com.cy.res.sys.entity.CommentEntity;
 import com.cy.res.common.vo.PageObject;
 import com.cy.res.sys.entity.FindProductEntity;
@@ -40,10 +38,11 @@ public class ProductController {
 	public String gotoDetail(Integer productId,Model model) {
 		ProductEntity product = productService.findProductById(productId);
 		List<CommentEntity> commentList = commentService.findCommentByProductId(productId);
-		ShopInfo shop = ShopInfoService.findShopInfoByProductId(productId);
+		int memberId = product.getMemberId();
+		List<ShopInfo> shop = ShopInfoService.findShopInfoByMemberId(memberId);
 		model.addAttribute("product", product);
 		model.addAttribute("commentList", commentList);
-		model.addAttribute("shop", shop);
+		model.addAttribute("shop", shop.get(0));
 		return "productdetail";
 	}
 	@RequestMapping("doFindAllProduct")
@@ -86,5 +85,20 @@ public class ProductController {
 		
 		return new JsonResult(data);
 	}
+	/**
+	 * 根据商品id查询商品信息
+	 */
+	@RequestMapping("findProductByProductId")
+	@ResponseBody
+	public JsonResult doFindProductByProductId(Integer productId) {
+		ProductEntity data = productService.findProductById(productId);
+		return new JsonResult(data);
+	}
 	
+	@RequestMapping("updateProduct")
+	@ResponseBody
+	public JsonResult doUpdateProduct(ProductEntity entity) {
+		productService.updateProduct(entity);
+		return new JsonResult("update ok");
+	}
 }

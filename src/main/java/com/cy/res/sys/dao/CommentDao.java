@@ -49,6 +49,6 @@ public interface CommentDao {
 	 *@return CommentEntity 返回一个评价
 	 * @throws Exception 
 	 */
-	public CommentEntity findCommentByCommentId(Integer commentId) throws ServiceException;
+	public CommentEntity findCommentByCommentIds(Integer commentId) throws ServiceException;
 	
 }

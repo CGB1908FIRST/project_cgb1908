@@ -93,7 +93,7 @@ public class CommentServiceImpl implements CommentService {
 		if(null==comment.getCommentId() || comment.getCommentId()<=0)
 			throw new IllegalArgumentException("商品评论对象数据ID异常!");
 		//1.4
-		CommentEntity findCommment = commentDao.findCommentByCommentId(comment.getCommentId());
+		CommentEntity findCommment = commentDao.findCommentByCommentIds(comment.getCommentId());
 		if(null==findCommment)
 			throw new ServiceException("该评价已经不存在!");
 		
