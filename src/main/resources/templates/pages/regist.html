@@ -223,7 +223,7 @@ body {
 				"username" : nn
 				}
 		$.post(url,data,function(result){
-			//console.log(result);
+			console.log(result);
 			if (result.state != 1) {
 				$("#hint_name").css("display","inline-block");
 			}else if(result.state == 0){

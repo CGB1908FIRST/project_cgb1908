@@ -54,5 +54,9 @@ public class HxdUserController {
 		hxdUserService.findUserByUsername(username);
 		return new JsonResult("1");
 	}
-
+	@RequestMapping("rePassword")
+	public JsonResult repassword(String password,String repassword,Integer id) {
+		hxdUserService.updataPsswordById(password, repassword, id);
+		return new JsonResult("repassword ok");
+	}
 }

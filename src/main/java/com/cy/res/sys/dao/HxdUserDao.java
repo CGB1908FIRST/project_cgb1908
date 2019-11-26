@@ -18,4 +18,10 @@ public interface HxdUserDao {
 	
 	/**匹配加盐密码*/
 	HxdUser findOneBySaltPassword(String SaltPassword,Integer userId);
+	
+	/**用户id更新密码*/
+	int updataPsswordById(Integer userId,String saltPassword,String salt);
+	
+	/**通过用户Id查找用户整条记录*/
+	HxdUser findOneById(Integer userId);
 }

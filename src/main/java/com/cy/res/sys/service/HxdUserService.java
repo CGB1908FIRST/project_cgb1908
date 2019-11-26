@@ -17,4 +17,6 @@ public interface HxdUserService {
 	
 	int findUserByUsername(String username);
 //	List<HxdUser> findOnebyLoginName(String LoginName);
+	int updataPsswordById(String password,String repassword,Integer id);
+	
 }
