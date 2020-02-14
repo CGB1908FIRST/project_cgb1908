@@ -4,9 +4,6 @@ public class Test {
 	int age ;
 	public static void main(String[] args) {
 		System.out.println("模仿别人修改");
-		System.out.println("模仿冲突2");
-		System.out.println("模仿冲突");
-		System.out.println("增加新功能");
 		
 	}
 	
